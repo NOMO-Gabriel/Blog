@@ -7,7 +7,7 @@ Cependant,vous pouvez commencer a lire le readme pour avoir quelques information
 
 # Votre Blog 
 
-Bienvenue dans le projet **Votre ToDoList** ! Ce projet implémente une application de gestion de tâches simple et efficace en PHP sur une page web.
+Bienvenue dans le projet **Blog** ! Ce projet implémente une application web simple et efficace en PHP avec utilisation du framework symfony.
 
 ## Table des matières
 
