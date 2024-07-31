@@ -1,0 +1,36 @@
+
+
+{% extends 'service/admin/base.html.twig' %}
+
+{% block title %}Détails du Service{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-blue">{{ service.name }}</h2>
+            </div>
+            <div class="card-body">
+                <h5><strong class="text-blue">Description courte:</strong> {{ service.miniDescription }}</h5>
+                <h5><strong class="text-blue">Description:</strong> {{ service.description }}</h5>
+
+                <p class="text-green"><strong class="text-blue">Nombre de visites:</strong> {{ service.numberOfRequests }}</p>
+                {#                <p><strong>Créé le:</strong> {{ service.createdAt|date('d/m/Y H:i') }}</p>#}
+                {#                <p><strong>Mis à jour le:</strong> {{ service.updatedAt|date('d/m/Y H:i') }}</p>#}
+            </div>
+            <div class="card-footer text-end">
+                <div class="card-icon  justify-content-center">
+                    <a href="#" class="btn btn-dark mb-2">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a href="#" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                    <a href="{{ path('blog.service.admin.index', {username: username}) }}" class="btn btn-primary">Retour à la liste</a>
+                    <a href="#" class="btn btn-primary">Voir les questions de ce service</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

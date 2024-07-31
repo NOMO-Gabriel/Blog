@@ -1,0 +1,15 @@
+{% extends 'service/admin/base.html.twig' %}
+
+{% block title %}Supprimer un Service{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Supprimer le Service</h1>
+        <p>Êtes-vous sûr de vouloir supprimer le service "{{ service.name }}" ? Cette action est irrévocable.</p>
+
+        <form method="post">
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+            <a href="{{ path('blog.service.admin.index', {username: username}) }}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'service/user/base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    {% include 'partial/flash.html.twig' %}
+
+    <div class="container pub-container">
+        <br><br>
+        <h1>Bienvenue sur votre page personnalisée, {{ username }}!</h1>
+        <br><br>
+        <!-- Services Section -->
+        <h2>Nos services les plus sollicités :</h2>
+        <div class="row">
+            {% for i in 1..8 %}
+                <div class="col-sm-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title text-blue">Service {{ i }}</h3>
+                            <small>Contenu du service {{ i }}.</small>
+                            <a href="#" class="btn btn-info mt-2"><i class="fa fa-link"></i> Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="#" class="btn btn-primary text-light btn-lg"><i class="fa fa-th-list"></i> Voir tous les services</a>
+
+        <!-- Questions Section -->
+        <h2>Les questions les plus posées :</h2>
+        <div class="row">
+            {% for j in 1..9 %}
+                <div class="col-sm-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title text-blue">Question {{ j }}</h3>
+                            <small>Contenu de la question {{ j }}.</small>
+                            <br>
+                            <a href="#" class="btn btn-info mt-2"><i class="fa fa-eye"></i> Voir les réponses</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="#" class="btn btn-primary text-light btn-lg"><i class="fa fa-list"></i> Voir toutes les questions</a>
+    </div>
+{% endblock %}
