@@ -1,0 +1,37 @@
+
+{% extends '/response/base.html.twig' %}
+
+{% block body %}
+    <div class="container w-75 my-5">
+        <h1 class="mb-4">Réponses{% if activeFilter != 'all' %} pour {{ questionTitle }}{% endif %}</h1>
+
+        <div class="mb-4">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link {{ activeFilter == 'all' ? 'active' : '' }}" href="{{ path('blog.response.default.index', { 'filter': 'all' }) }}">Toutes les réponses</a>
+                </li>
+                {% for question in questions %}
+                    <li class="nav-item">
+                        <a class="nav-link {{ activeFilter == 'question_' ~ question.id ? 'active' : '' }}" href="{{ path('blog.response.default.index', { 'filter': 'question_' ~ question.id }) }}">{{ question.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="mb-4">
+            <a class="btn btn-primary" href="{{ path('blog.response.default.create') }}">Ajouter une réponse</a>
+        </div>
+
+        <ul class="list-group">
+            {% for response in responses %}
+                <li class="list-group-item">
+                    <a href="{{ path('blog.response.default.show', { 'id': response.id }) }}">
+                        {{ response.content }}
+                    </a>
+                </li>
+            {% else %}
+                <li class="list-group-item">Aucune réponse trouvée</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

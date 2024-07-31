@@ -1,0 +1,97 @@
+{% extends 'question/base.html.twig' %}
+
+{% block body %}
+    <br><br><br>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar mb-3">
+                    <ul class="list-group">
+                        <li class="list-group-item {% if activeFilter == 'all' %}active {% endif %}">
+                            <a href="{{ path('blog.question.default.index', { 'filter': 'all' }) }}" class="btn {% if activeFilter == 'all' %}btn-info text-light{% else %}btn-light{% endif %}">All</a>
+                        </li>
+                        {% for service in services %}
+                            <li class="list-group-item {% if activeFilter == 'service_' ~ service.id %}active{% endif %}">
+                                <a href="{{ path('blog.question.default.index', { 'filter': 'service_' ~ service.id }) }}" class="btn {% if activeFilter == 'service_' ~ service.id %}btn{% else %}btn-light{% endif %}">{{ service.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <h1 >
+                    {% if activeFilter == 'all' %}
+                        Toutes les questions
+                    {% else %}
+                        Questions: {{ serviceName }} <!-- Extraction du nom du service à partir du filtre -->
+                    {% endif %}
+                </h1>
+                <a href="{{ path('blog.question.default.create') }}" class="btn  btn-info mb-3 text-light">New Question</a>
+
+                <!-- Questions Accordion -->
+                <div class="accordion" id="questionsAccordion">
+                    {% for question in questions %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading{{ question.id }}">
+                                <button class="accordion-button {% if loop.index == 1 %}bg-light{% else %}bg-white{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ question.id }}" aria-expanded="true" aria-controls="collapse{{ question.id }}">
+                                    {{ question.title }}
+                                </button>
+                            </h2>
+                            <div id="collapse{{ question.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ question.id }}" data-bs-parent="#questionsAccordion">
+                                <div class="accordion-body">
+                                    <div class="card w-75 mb-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ question.title }}</h5>
+                                            <p class="card-text">{{ question.content }}</p>
+                                            <p>Nombre de réponses : <strong>{{ question.responses|length }}</strong></p>
+                                            <a href="#" class="btn btn-primary">Voir les réponses</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p>Aucune question disponible.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .accordion-button {
+            background-color: #fff;
+        }
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #cce5ff; /* Bleu ciel pour les questions ouvertes */
+        }
+        .sidebar {
+            background-color: #f8f9fa; /* Couleur de fond pour la sidebar */
+            padding: 1rem; /* Espacement intérieur de la sidebar */
+        }
+        .list-group-item.active {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .list-group-item {
+
+        }
+    </style>
+{% endblock %}

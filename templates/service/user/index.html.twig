@@ -1,0 +1,61 @@
+{% extends 'service/user/base.html.twig' %}
+
+{% block title %}All Services{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-primary">Nos Services</h1>
+        <div class="row">
+            {% for service in services %}
+                <div class="col-md-6 mb-4">
+                    <div class="card d-flex flex-row">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">{{ service.name }}</h5>
+                            <p class="card-text text-dark">{{ service.miniDescription }}</p>
+                            <a href="{{ path('blog.service.user.show',{id:service.id, username:username}) }}" class="btn btn-info mt-2">En savoir plus</a>
+                        </div>
+                        <div class="card-icon d-flex align-items-center justify-content-center">
+                            <i class="fa fa-cogs fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .card {
+            border: 1px solid #ddd;
+            border-radius: .25rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+        .card-icon {
+            background-color: #f8f9fa;
+            border-left: 1px solid #ddd;
+            padding: 1rem;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-body {
+            flex: 1;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #007bff; /* Titre en bleu */
+        }
+        .card-text {
+            font-size: 1rem;
+            color: #212529; /* Mini description en noir */
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+    </style>
+{% endblock %}
