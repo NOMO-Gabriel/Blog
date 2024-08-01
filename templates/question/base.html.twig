@@ -17,6 +17,7 @@
             body {
                 display: flex;
                 flex-direction: column;
+                min-height: 100vh;
                 background-color: white;
             }
             .content {
@@ -28,7 +29,7 @@
             .nav-link.active {
                 color: rgba(255, 255, 255, 0.89) !important;
             }
-            . .carousel-item {
+            .carousel-item {
                 background-color: #e2f8f6;
                 color: black;
                 height: 400px;
@@ -109,13 +110,15 @@
         </div>
     </div>
 </nav>
+
+<div class="content">
     {% block body %}
         {% include 'spartial/flash.html.twig' %}
     {% endblock %}
 </div>
 
 <!-- Footer -->
-<footer class="bg-info text-dark text-center py-3 mt-4">
+<footer class="bg-info text-dark text-center py-3">
     &copy; 2024 Blog Decathecs. All rights reserved.
     Powered by NOMO Gabriel
 </footer>
@@ -125,4 +128,3 @@
 <script src="../assets/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>
-

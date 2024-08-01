@@ -13,11 +13,12 @@
             html, body {
                 height: 100%;
                 margin: 0;
-            }
-            body {
                 display: flex;
                 flex-direction: column;
+            }
+            body {
                 background-color: white;
+                flex: 1;
             }
             .content {
                 flex: 1;
@@ -28,7 +29,7 @@
             .nav-link.active {
                 color: rgba(255, 255, 255, 0.89) !important;
             }
-            . .carousel-item {
+            .carousel-item {
                 background-color: #e2f8f6;
                 color: black;
                 height: 400px;
@@ -60,34 +61,34 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container-fluid">
-        <a class="navbar-brand text-dark" href="{{ path('blog.home.user.index',{username: username}) }}">Blog</a>
+        <a class="navbar-brand text-dark" href="{{ path('blog.home.user.index', {username: username}) }}">Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.home.user.index' ? 'active' : '' }}" href="{{ path('blog.home.user.index',{username: username}) }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.home.user.index' ? 'active' : '' }}" href="{{ path('blog.home.user.index', {username: username}) }}">
                         <i class="fa fa-home"></i> Accueil
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.question.user.' ? 'active' : '' }}" href="{{ path('blog.question.user.index',{username: username}) }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.question.user.' ? 'active' : '' }}" href="{{ path('blog.question.user.index', {username: username}) }}">
                         <i class="fa fa-question"></i> Questions
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.service.user.' ? 'active' : '' }}" href="{{ path('blog.service.user.index',{username: username}) }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.service.user.' ? 'active' : '' }}" href="{{ path('blog.service.user.index', {username: username}) }}">
                         <i class="fa fa-cogs"></i> Services
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about.' ? 'active' : '' }}" href="{{ path('blog.util.about.user',{username: username}) }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about.' ? 'active' : '' }}" href="{{ path('blog.util.about.user', {username: username}) }}">
                         <i class="fa fa-info-circle"></i> About Us
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.index' ? 'active' : '' }}" href="{{ path('blog.contact.index') }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.' ? 'active' : '' }}" href="{{ path('blog.contact.user',{username : username}) }}">
                         <i class="fa fa-envelope"></i> Contact Us
                     </a>
                 </li>
@@ -111,13 +112,14 @@
     </div>
 </nav>
 
+<div class="content">
     {% block body %}
         {% include 'spartial/flash.html.twig' %}
     {% endblock %}
 </div>
 
 <!-- Footer -->
-<footer class="bg-info text-dark text-center py-3 mt-4">
+<footer class="bg-info text-dark text-center py-3 mt-auto">
     &copy; 2024 Blog Decathecs. All rights reserved.
     Powered by NOMO Gabriel
 </footer>

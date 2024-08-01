@@ -9,11 +9,11 @@
                 <div class="sidebar mb-3">
                     <ul class="list-group">
                         <li class="list-group-item {% if activeFilter == 'all' %}active {% endif %}">
-                            <a href="{{ path('blog.question.default.index', { 'filter': 'all' }) }}" class="btn {% if activeFilter == 'all' %}btn-info text-light{% else %}btn-light{% endif %}">All</a>
+                            <a href="{{ path('blog.question.admin.index', { 'filter': 'all' , 'username': username}) }}" class="btn {% if activeFilter == 'all' %}btn-info text-light{% else %}btn-light{% endif %}">All</a>
                         </li>
                         {% for service in services %}
                             <li class="list-group-item {% if activeFilter == 'service_' ~ service.id %}active{% endif %}">
-                                <a href="{{ path('blog.question.default.index', { 'filter': 'service_' ~ service.id }) }}" class="btn {% if activeFilter == 'service_' ~ service.id %}btn{% else %}btn-light{% endif %}">{{ service.name }}</a>
+                                <a href="{{ path('blog.question.admin.index', { 'filter': 'service_' ~ service.id , 'username': username}) }}" class="btn {% if activeFilter == 'service_' ~ service.id %}btn{% else %}btn-light{% endif %}">{{ service.name }}</a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -29,7 +29,7 @@
                         Questions: {{ serviceName }} <!-- Extraction du nom du service à partir du filtre -->
                     {% endif %}
                 </h1>
-                <a href="{{ path('blog.question.default.create') }}" class="btn  btn-info mb-3 text-light">New Question</a>
+                <a href="{{ path('blog.question.admin.create',{username : username}) }}" class="btn  btn-info mb-3 text-light">New Question</a>
 
                 <!-- Questions Accordion -->
                 <div class="accordion" id="questionsAccordion">

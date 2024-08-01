@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.question.default.' ? 'active' : '' }}" href="{{ path('blog.question.default.index') }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.question.admin.' ? 'active' : '' }}" href="{{ path('blog.question.admin.index',{username: username}) }}">
                         <i class="fa fa-question"></i> Questions
                     </a>
                 </li>
@@ -82,12 +82,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about' ? 'active' : '' }}" href="{{path('blog.util..admin',{username: username}) }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about' ? 'active' : '' }}" href="{{path('blog.util.about.admin',{username: username}) }}">
                         <i class="fa fa-info-circle"></i> About Us
                     </a>
                 </li>
 {#                <li class="nav-item">#}
-{#                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.index' ? 'active' : '' }}" href="{{ path('blog.contact.index') }}">#}
+{#                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.' ? 'active' : '' }}" href="{{ path('blog.contact.admin',{username: username}) }}">#}
 {#                        <i class="fa fa-envelope"></i> Contact Us#}
 {#                    </a>#}
 {#                </li>#}

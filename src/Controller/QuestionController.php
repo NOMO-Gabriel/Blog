@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Question;
 use App\Entity\Service;
+use App\Entity\User;
 use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -145,53 +146,68 @@ class QuestionController extends AbstractController
         $this->addFlash("alert", "Connectez vous ou inscrivez vous pour creer une question");
         return $this->redirectToRoute('app_login');
     }
+
     #[Route('/ask/user/{username}', name: 'user.create', requirements: ['username' => '^[a-z0-9_-]{4,15}$'])]
     public function userCreate(Request $request, EntityManagerInterface $entityManager, $username): Response
     {
+
+        if (!$this->isGranted('ROLE_USER')) {
+            $this->addFlash("alert", "Connectez-vous ou inscrivez-vous pour créer une question");
+            return $this->redirectToRoute('app_login');
+        }
+        $creator = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+        if (!$creator) {
+            $this->addFlash("error", "Utilisateur non trouvé");
+            return $this->redirectToRoute('blog.question.user.index', ['username' => $username]);
+        }
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $question->setCreatedAt(new \DateTimeImmutable());
             $question->setUpdatedAt(new \DateTimeImmutable());
+            $question->setCreator($creator);
             $entityManager->persist($question);
             $entityManager->flush();
-
             $this->addFlash('success', 'Question posée avec succès');
-
+            return $this->redirectToRoute('blog.question.user.index', ['username' => $username]);
+        } else {
+            $this->addFlash("error", "Une erreur est survenue, vérifiez que votre authentification et réessayez");
             return $this->redirectToRoute('blog.question.user.index', ['username' => $username]);
         }
-
-        return $this->render('question/user/create.html.twig', [
-            'form' => $form->createView(),
-            'username' => $username,
-        ]);
+            return $this->render('question/user/create.html.twig', [
+                'form' => $form->createView(),
+                'username' => $username,
+            ]);
     }
 
+
     #[Route('/ask/admin/{username}', name: 'admin.create', requirements: ['username' => '^[a-z0-9_-]{4,15}$'])]
-    public function adminCreate(Request $request, EntityManagerInterface $entityManager, $username): Response
+    public function adminCreate(Request $request, EntityManagerInterface $entityManager, string $username): Response
     {
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $creator = $entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
+            if (!$creator) {
+                $this->addFlash('error', "L'utilisateur n'existe pas");
+                return $this->redirectToRoute('blog.question.admin.index', ['username' => $username]);
+            }
             $question->setCreatedAt(new \DateTimeImmutable());
             $question->setUpdatedAt(new \DateTimeImmutable());
+            $question->setCreator($creator);
             $entityManager->persist($question);
             $entityManager->flush();
-
             $this->addFlash('success', 'Question posée avec succès');
-
             return $this->redirectToRoute('blog.question.admin.index', ['username' => $username]);
         }
-
         return $this->render('question/admin/create.html.twig', [
             'form' => $form->createView(),
             'username' => $username,
         ]);
     }
+
 
     // Routes pour modifier une question
     #[Route('/{id}/edit', name: 'default.edit', requirements: ['id' => Requirement::DIGITS])]
@@ -216,7 +232,7 @@ class QuestionController extends AbstractController
         }
 
         return $this->render('question/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -242,7 +258,7 @@ class QuestionController extends AbstractController
         }
 
         return $this->render('question/user/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'username' => $username,
         ]);
     }
@@ -269,7 +285,7 @@ class QuestionController extends AbstractController
         }
 
         return $this->render('question/admin/edit.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
             'username' => $username,
         ]);
     }

@@ -87,7 +87,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.index' ? 'active' : '' }}" href="{{ path('blog.contact.index') }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.' ? 'active' : '' }}" href="{{ path('blog.contact.user',{username: username}) }}">
                         <i class="fa fa-envelope"></i> Contact Us
                     </a>
                 </li>
@@ -140,7 +140,7 @@
             <div class="carousel-item text-center p-5">
                 <h1>Contactez-nous</h1>
                 <h4>Si vous avez un problème particulier ou souhaitez prendre rendez-vous, contactez-nous.</h4>
-                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.contact.index') }}"><i class="fa fa-envelope"></i> Contact us</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.contact.user',{username: username}) }}"><i class="fa fa-envelope"></i> Contact us</a>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">

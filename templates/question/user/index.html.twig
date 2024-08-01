@@ -29,7 +29,7 @@
                         Questions: {{ serviceName }} <!-- Extraction du nom du service à partir du filtre -->
                     {% endif %}
                 </h1>
-                <a href="{{ path('blog.question.default.create') }}" class="btn  btn-info mb-3 text-light">New Question</a>
+                <a href="{{ path('blog.question.user.create',{username: username}) }}" class="btn  btn-info mb-3 text-light">New Question</a>
 
                 <!-- Questions Accordion -->
                 <div class="accordion" id="questionsAccordion">
