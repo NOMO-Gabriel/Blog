@@ -12,7 +12,7 @@
         <ul class="list-group">
             {% for response in responses %}
                 <li class="list-group-item">
-                    <a href="{{ path('blog.response.default.show', { 'id': response.id }) }}">
+                    <a href="{{path('blog.response.question.index',{id: question.id})}}">
                         {{ response.content }}
                     </a>
                 </li>

@@ -24,23 +24,34 @@ class HomeController extends AbstractController
         return $this->redirectToRoute('blog.home.default.index');
     }
     #[Route('/blog/home', name: 'default.index')]
-    public function index(): Response
+    public function index(ServiceRepository $serviceRepository, QuestionRepository $questionRepository): Response
     {
-        return $this->render('home/index.html.twig', [
-            'title' => 'home'
 
+        $services = $serviceRepository->findBy([], ['id' => 'DESC'], 8);
+        $questions = $questionRepository->findBy([], ['id' => 'DESC'], 9);
+        return $this->render('home/index.html.twig', [
+            'title' => 'homeUser',
+            'services' => $services,
+            'questions' => $questions,
         ]);
     }
     #[Route('/blog/home/user/{username}', name: 'user.index',requirements: ['username' => '^[a-z0-9_-]{4,15}$' ])]
-    public function UserIndex($username): Response
+    public function UerIndex(string $username, ServiceRepository $serviceRepository, QuestionRepository $questionRepository): Response
     {
 
+        $services = $serviceRepository->findBy([], ['id' => 'DESC'], 8);
+        $questions = $questionRepository->findBy([], ['id' => 'DESC'], 9);
         return $this->render('home/user/index.html.twig', [
             'title' => 'homeUser',
-            'username' => $username
+            'username' => $username,
+            'services' => $services,
+            'questions' => $questions,
         ]);
+
     }
-    #[Route('/admin/{username}', name: 'admin.index')]
+
+
+    #[Route('/blog/home/admin/{username}', name: 'admin.index',requirements: ['username' => '^[a-z0-9_-]{4,15}$' ])]
     public function AdminIndex(string $username, ServiceRepository $serviceRepository, QuestionRepository $questionRepository): Response
     {
 

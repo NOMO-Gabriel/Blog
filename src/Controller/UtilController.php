@@ -17,6 +17,29 @@ class UtilController extends AbstractController
             'title' => 'about',
         ]);
     }
+    #[Route('/about/user/{username}', name: 'about.user',requirements: ['username'=> Requirement::ASCII_SLUG])]
+    public function aboutUser($username): Response
+    {
+        return $this->render('util/aboutUser.html.twig', [
+            'title' => 'about',
+            'username' => $username
+        ]);
+    }
+    #[Route('/about/admin/{username}', name: 'about.admin',requirements: ['username'=> Requirement::ASCII_SLUG])]
+    public function aboutAdmin($username): Response
+    {
+        return $this->render('util/aboutUser.html.twig', [
+            'title' => 'about',
+            'username' => $username
+        ]);
+    }
+
+
+
+
+
+
+
     #[Route('/notify/{username}', name: 'notify',requirements: ['username' => Requirement::ASCII_SLUG])]
     public function notify($username): Response
     {

@@ -60,29 +60,29 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container-fluid">
-        <a class="navbar-brand text-dark" href="{{ path('blog.home.default.index') }}">Blog</a>
+        <a class="navbar-brand text-dark" href="{{ path('blog.home.user.index',{username: username}) }}">Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.home.default.index' ? 'active' : '' }}" href="{{ path('blog.home.default.index') }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.home.user.index' ? 'active' : '' }}" href="{{ path('blog.home.user.index',{username: username}) }}">
                         <i class="fa fa-home"></i> Accueil
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.question.default.' ? 'active' : '' }}" href="{{ path('blog.question.default.index') }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.question.user.' ? 'active' : '' }}" href="{{ path('blog.question.user.index',{username: username}) }}">
                         <i class="fa fa-question"></i> Questions
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.service.default.' ? 'active' : '' }}" href="{{ path('blog.service.default.index') }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.service.user.' ? 'active' : '' }}" href="{{ path('blog.service.user.index',{username: username}) }}">
                         <i class="fa fa-cogs"></i> Services
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about' ? 'active' : '' }}" href="{{ path('blog.util.about') }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about.' ? 'active' : '' }}" href="{{ path('blog.util.about.user',{username: username}) }}">
                         <i class="fa fa-info-circle"></i> About Us
                     </a>
                 </li>
@@ -103,7 +103,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Preferences</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fa fa-history"></i> My Activity</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -119,28 +119,28 @@
                 <h1>Bienvenue sur le blog de Decathecs</h1>
                 <h3>Vous pouvez nous confier tous vos problèmes et ils seront résolus</h3>
                 <h3>Inscrivez-vous pour profiter de toutes les fonctionnalités de notre blog.</h3>
-                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-user-plus"></i> S'inscrire</a>
-                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-sign-in-alt"></i> Se connecter</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('app_register') }}"><i class="fa fa-user-plus"></i> S'inscrire</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('app_logout') }}"><i class="fa fa-sign-in-alt"></i> Se connecter</a>
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>Des Questions ?</h1>
                 <h3>Posez vos questions et obtenez des réponses de notre communauté.</h3>
-                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-question"></i> Commencer</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.question.user.index',{username: username}) }}"><i class="fa fa-question"></i> Commencer</a>
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>Nos Services</h1>
                 <h3>Découvrez les différents services que nous offrons.</h3>
-                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-cogs"></i> Voir les services</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.service.user.index',{username: username}) }}"><i class="fa fa-cogs"></i> Voir les services</a>
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>À propos de nous</h1>
                 <h3>Cliquer sur le bouton pour en savoir plus sur nous et notre mission.</h3>
-                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-info-circle"></i> About us</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.util.about') }}"><i class="fa fa-info-circle"></i> About us</a>
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>Contactez-nous</h1>
                 <h4>Si vous avez un problème particulier ou souhaitez prendre rendez-vous, contactez-nous.</h4>
-                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-envelope"></i> Contact us</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.contact.index') }}"><i class="fa fa-envelope"></i> Contact us</a>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">
@@ -153,12 +153,12 @@
         </button>
     </div>
     {% block body %}
-        {% include 'partial/flash.html.twig' %}
+        {% include 'spartial/flash.html.twig' %}
     {% endblock %}
 </div>
 
 <!-- Footer -->
-<footer class="bg-info text-white text-center py-3 mt-4">
+<footer class="bg-info text-dark text-center py-3 mt-4">
     &copy; 2024 Blog Decathecs. All rights reserved.
     Powered by NOMO Gabriel
 </footer>

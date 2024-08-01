@@ -77,12 +77,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.service.default.' ? 'active' : '' }}" href="{{ path('blog.service.admin.index', {username: username}) }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.service.admin.' ? 'active' : '' }}" href="{{ path('blog.service.admin.index', {username: username}) }}">
                         <i class="fa fa-cogs"></i> Services
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about' ? 'active' : '' }}" href="{{path('blog.util.about') }}">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about' ? 'active' : '' }}" href="{{path('blog.util..admin',{username: username}) }}">
                         <i class="fa fa-info-circle"></i> About Us
                     </a>
                 </li>
@@ -103,7 +103,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Preferences</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fa fa-history"></i> My Activity</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-sign-in-alt"></i> Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa fa-sign-in-alt"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -154,7 +154,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="bg-info text-white text-center py-3 mt-4">
+<footer class="bg-info text-dark text-center py-3 mt-4">
     &copy; 2024 Blog Decathecs. All rights reserved.
     Powered by NOMO Gabriel
 </footer>

@@ -38,7 +38,7 @@ class QuestionController extends AbstractController
         ]);
     }
 
-    #[Route('/user/{username}/{filter}', name: 'blog.question.user.index', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'filter' => 'all|service_[0-9]+'])]
+    #[Route('/user/{username}/{filter}', name: 'user.index', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'filter' => 'all|service_[0-9]+'])]
     public function userIndex(EntityManagerInterface $entityManager, string $username, $filter = 'all'): Response
     {
         $services = $entityManager->getRepository(Service::class)->findAll();
@@ -62,7 +62,7 @@ class QuestionController extends AbstractController
     }
 
 
-    #[Route('/admin/{username}/{filter}', name: 'blog.question.admin.index', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'filter' => 'all|service_[0-9]+'])]
+    #[Route('/admin/{username}/{filter}', name: 'admin.index', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'filter' => 'all|service_[0-9]+'])]
     public function adminIndex(EntityManagerInterface $entityManager, string $username, $filter = 'all'): Response
     {
         $services = $entityManager->getRepository(Service::class)->findAll();
@@ -81,9 +81,10 @@ class QuestionController extends AbstractController
             'services' => $services,
             'activeFilter' => $filter,
             'serviceName' => $serviceName,
-            'username' => $username,  // Ajout du username pour le template
+            'username' => $username,
         ]);
     }
+
 
 
     // Routes pour voir une seule question
@@ -137,7 +138,6 @@ class QuestionController extends AbstractController
             'username' => $username,
         ]);
     }
-
     // Routes pour poser une question
     #[Route('/ask', name: 'default.create')]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
@@ -145,30 +145,6 @@ class QuestionController extends AbstractController
         $this->addFlash("alert", "Connectez vous ou inscrivez vous pour creer une question");
         return $this->redirectToRoute('app_login');
     }
-//    #[Route('/ask', name: 'default.create')]
-//    public function create(Request $request, EntityManagerInterface $entityManager): Response
-//    {
-//        $question = new Question();
-//        $form = $this->createForm(QuestionType::class, $question);
-//
-//        $form->handleRequest($request);
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $question->setCreatedAt(new \DateTimeImmutable());
-//            $question->setUpdatedAt(new \DateTimeImmutable());
-//            $question->setCreator('1');
-//            $entityManager->persist($question);
-//            $entityManager->flush();
-//
-//            $this->addFlash('success', 'Question posée avec succès');
-//
-//            return $this->redirectToRoute('blog.question.default.index');
-//        }
-//
-//        return $this->render('question/create.html.twig', [
-//            'form' => $form,
-//        ]);
-//    }
-
     #[Route('/ask/user/{username}', name: 'user.create', requirements: ['username' => '^[a-z0-9_-]{4,15}$'])]
     public function userCreate(Request $request, EntityManagerInterface $entityManager, $username): Response
     {

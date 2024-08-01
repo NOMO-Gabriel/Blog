@@ -1,42 +1,49 @@
-{% extends 'home/base.html.twig' %}
+{% extends '/home/base.html.twig' %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
+
+    {% include 'partials/flash.html.twig' %}
+
+
     <div class="container pub-container">
-        <h1>Nos services les plus sollicités :</h1>
+        <br><br>
+        <h1>Bienvenue surnotre Plateforme</h1>
+        <br><br>
+        <!-- Services Section -->
+        <h2>Nos services les plus sollicités :</h2>
         <div class="row">
-            {% for i in 1..8 %}
+            {% for service in services %}
                 <div class="col-sm-3">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="card-title text-blue">Service {{ i }}</h3>
-                            <small>Contenu du service {{ i }}.</small>
-                            <a href="{{ path('blog.service.default.show', {'id': i}) }}" class="btn btn-info mt-2">Go somewhere</a>
+                            <h3 class="card-title text-blue">Service</h3>
+                            <div class="container sm "><small><strong>{{ service.name }}</strong></small></div>
+                            <a href="{{ path('blog.service.default.index') }}" class="btn btn-info mt-2"><i class="fa fa-eye"></i> voir plus</a>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        <a href="{{ path('blog.service.default.index') }}" class="btn btn-primary text-light btn-lg">Voir tous les services</a>
-    </div>
-
-    <div class="container pub-container">
-        <h1>Les questions les plus posées :</h1>
+        <a href="{{ path('blog.service.default.index') }}" class="btn btn-info  btn-lg"><i class="fa fa-th-list"></i> Voir tous les services</a>
+        <br><br><br>
+        <!-- Questions Section -->
+        <h2>Les questions les plus posées :</h2>
         <div class="row">
-            {% for j in 1..9 %}
+            {% for question in questions %}
                 <div class="col-sm-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="card-title text-blue">Question {{ j }}</h3>
-                            <small>Contenu de la question {{ j }}.</small>
+                            <h3 class="card-title text-blue">Question</h3>
+                            <div class="container sm"><small><strong>{{ question.title }}</strong></small></div>
                             <br>
-                            <a href="{{ path('blog.question.default.show', {'id': j}) }}" class="btn btn-info mt-2">Voir les réponses</a>
+                            <a href="{{ path('blog.service.default.index') }}" class="btn btn-info mt-2"><i class="fa fa-eye"></i> Voir les réponses</a>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        <a href="{{ path('blog.question.default.index') }}" class="btn btn-primary text-light btn-lg">Voir toutes les questions</a>
+        <a href="{{ path('blog.service.default.index') }}" class="btn btn-info  btn-lg"><i class="fa fa-list"></i> Voir toutes les questions</a>
     </div>
 {% endblock %}
