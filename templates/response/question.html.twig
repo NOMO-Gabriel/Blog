@@ -1,24 +1,46 @@
-{# templates/response/question.html.twig #}
-{% extends '/response/base.html.twig' %}
+{% extends 'question/user/base.html.twig' %}
 
-{% block body %}
-    <div class="container w-75 my-5">
-        <h1 class="mb-4">Réponses pour "{{ question.title }}"</h1>
 
-        <div class="mb-4">
-            <a class="btn btn-primary" href="{{ path('blog.response.default.create') }}">Ajouter une réponse</a>
+    {% block body %}
+<div class="container">
+    <br><br>
+        <div class="card  mb-2">
+            <div class="card-body">
+                <h5 class="card-title text-info">Question :{{ question.title}}</h5>
+                <p class="card-text"> <strong>{{ question.content }}</strong> </p>
+                <p> Responses : <strong>{{ question.responses|length }}</strong></p>
+                <p>created by : <strong class="text-info"> {{ question.creator.username }}<i class="fa-solid fa-user"></i></strong>  <br><br> <strong>{{ question.createdAt | date('l h:i  d/m/y ') }}</strong> </p>
+                <a href="{{ path('blog.response.create.user',{id: question.id, username: username}) }}" class="btn btn-info">Repondre</a>
+                <a href="{{ path('blog.response.question.index',{id: question.id, username: username}) }}" class="btn btn-info">Voir les réponses</a>
+            </div>
         </div>
+    <br>
 
-        <ul class="list-group">
-            {% for response in responses %}
-                <li class="list-group-item">
-                    <a href="{{path('blog.response.question.index',{id: question.id})}}">
+        {% for response in responses %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title ">
+                        <strong class="text-info"> {{ response.creator.getUsername() }}<i class="fa-regular fa-user"></i></strong>
+                            <small><strong class="text-info right text-sm">{{ question.createdAt | date('l h:i  d/m/y ') }}</strong></small>
+                            <br>
+                    </h5>
+                    <p>
                         {{ response.content }}
-                    </a>
-                </li>
-            {% else %}
-                <li class="list-group-item">Aucune réponse trouvée</li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endblock %}
+                    </p>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+</div>
+
+        <style>
+            .text-sm{
+                font-size: 15px;
+                margin-left: 75%;
+            }
+        </style>
+    {% endblock %}
+
+
+
+

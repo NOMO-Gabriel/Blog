@@ -26,10 +26,10 @@
                     {% if activeFilter == 'all' %}
                         Toutes les questions
                     {% else %}
-                        Questions: {{ serviceName }} <!-- Extraction du nom du service à partir du filtre -->
+                        Service: <strong >{{ serviceName }}</strong>
                     {% endif %}
                 </h1>
-                <a href="{{ path('blog.question.admin.create',{username : username}) }}" class="btn  btn-info mb-3 text-light">New Question</a>
+                <a href="{{ path('blog.question.admin.create',{username : username}) }}" class="btn  btn-info mb-3 text-dark">New Question</a>
 
                 <!-- Questions Accordion -->
                 <div class="accordion" id="questionsAccordion">
@@ -42,12 +42,15 @@
                             </h2>
                             <div id="collapse{{ question.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ question.id }}" data-bs-parent="#questionsAccordion">
                                 <div class="accordion-body">
-                                    <div class="card w-75 mb-2">
+                                    <div class="card  mb-2">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ question.title }}</h5>
-                                            <p class="card-text">{{ question.content }}</p>
+                                            <h5 class="card-title text-info">{{ question.title }}</h5>
+                                            <p class="card-text"> <strong>{{ question.content }}</strong> </p>
                                             <p>Nombre de réponses : <strong>{{ question.responses|length }}</strong></p>
-                                            <a href="#" class="btn btn-primary">Voir les réponses</a>
+                                            <p>created by : <strong class="text-info"> {{ question.creator.username }}<i class="fa-solid fa-user"></i></strong>  <br><br> <strong>{{ question.createdAt | date('l h:i  d/m/y ') }}</strong> </p>
+                                            <a href="{{ path('blog.response.create.user',{id: question.id, username: username}) }}" class="btn btn-info">Repondre</a>
+                                            <a href="{{ path('blog.response.question.index',{id: question.id, username: username}) }}" class="btn btn-info">Voir les réponses</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -75,8 +78,8 @@
             background-color: #cce5ff; /* Bleu ciel pour les questions ouvertes */
         }
         .sidebar {
-            background-color: #f8f9fa; /* Couleur de fond pour la sidebar */
-            padding: 1rem; /* Espacement intérieur de la sidebar */
+            background-color: #f8f9fa;
+            padding: 1rem;
         }
         .list-group-item.active {
             background-color: #17a2b8;
