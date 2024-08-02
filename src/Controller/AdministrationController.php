@@ -25,6 +25,7 @@ class AdministrationController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/edit-role/{id}', name: 'edit_role', methods: ['POST'])]
     public function editRole(Request $request, EntityManagerInterface $entityManager, int $id): Response
     {
@@ -38,13 +39,13 @@ class AdministrationController extends AbstractController
                 $user->setRoles(['ROLE_USER']);
                 break;
             case '1':
-                $user->setRoles(['ROLE_SUPER_ADMIN']);
+                $user->setRoles(['ROLE_SUPERADMIN']);
                 break;
             case '2':
                 $user->setRoles(['ROLE_ADMIN']);
                 break;
             default:
-                throw new \InvalidArgumentException('Invalid role');
+                $this->addFlash("error","invalid role");
         }
         $entityManager->persist($user);
         $entityManager->flush();

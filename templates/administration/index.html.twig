@@ -35,7 +35,9 @@
                             <div class="form-group">
                                 <select name="role" class="form-select">
                                     <option value="0" {% if user.getRoles()[0] == 'ROLE_USER' %}selected{% endif %}>User</option>
+                                   {% if is_granted("ROLE_SUPERADMIN")%}
                                     <option value="1" {% if user.getRoles()[0] == 'ROLE_SUPER_ADMIN' %}selected{% endif %}>SUPERADMIN</option>
+                                    {% endif%}
                                     <option value="2" {% if user.getRoles()[0] == 'ROLE_ADMIN' %}selected{% endif %}>Admin</option>
                                 </select>
                                 <button type="submit" class="btn btn-info mt-2">
