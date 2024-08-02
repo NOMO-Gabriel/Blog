@@ -151,7 +151,6 @@ class QuestionController extends AbstractController
     #[Route('/ask/user/{username}', name: 'user.create', requirements: ['username' => '^[a-z0-9_-]{4,15}$'])]
     public function userCreate(Request $request, EntityManagerInterface $entityManager, $username): Response
     {
-
         if (!$this->isGranted('ROLE_USER')) {
             $this->addFlash("alert", "Connectez-vous ou inscrivez-vous pour créer une question");
             return $this->redirectToRoute('app_login');
@@ -172,10 +171,8 @@ class QuestionController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Question posée avec succès');
             return $this->redirectToRoute('blog.question.user.index', ['username' => $username]);
-        } else {
-            $this->addFlash("error", "Une erreur est survenue, vérifiez que votre authentification et réessayez");
-            return $this->redirectToRoute('blog.question.user.index', ['username' => $username]);
-        }
+    }
+
             return $this->render('question/user/create.html.twig', [
                 'form' => $form->createView(),
                 'username' => $username,

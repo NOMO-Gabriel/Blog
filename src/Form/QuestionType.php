@@ -32,6 +32,7 @@ class QuestionType extends AbstractType
             ])
             ->add('send',SubmitType::class,[
                 'label' => 'poser votre question',
+                'attr'=> ['class'=>'btn bg-info rounded']
             ])
         ;
     }

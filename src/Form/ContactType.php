@@ -33,6 +33,7 @@ class ContactType extends AbstractType
             ])
             ->add('send', SubmitType::class, [
                 'label' => 'Send',
+                'attr'=> ['class'=>'btn bg-info rounded']
             ])
         ;
     }

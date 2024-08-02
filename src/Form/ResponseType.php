@@ -26,7 +26,8 @@ class ResponseType extends AbstractType
                 'required' => true,
             ])
             ->add('submit',SubmitType::class,[
-                'label'=> 'soumettre'
+                'label'=> 'soumettre',
+                'attr'=> ['class'=>'btn bg-info rounded']
             ] )
         ;
     }

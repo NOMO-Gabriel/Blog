@@ -113,9 +113,10 @@
 </nav>
 
 <div class="content">
-    {% block body %}
-        {% include 'spartial/flash.html.twig' %}
-    {% endblock %}
+    <div class="container my-4">
+        {% include 'partials/flash.html.twig' %}
+        {% block body %}{% endblock %}
+    </div>
 </div>
 
 <!-- Footer -->

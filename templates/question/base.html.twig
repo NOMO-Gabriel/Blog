@@ -94,9 +94,9 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>
-                </li>
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>#}
+{#                </li>#}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-user"></i> User
@@ -112,9 +112,10 @@
 </nav>
 
 <div class="content">
-    {% block body %}
-        {% include 'spartials/flash.html.twig' %}
-    {% endblock %}
+    <div class="container my-4">
+        {% include 'partials/flash.html.twig' %}
+        {% block body %}{% endblock %}
+    </div>
 </div>
 
 <!-- Footer -->

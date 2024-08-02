@@ -2,6 +2,7 @@
 
 {% block title %}Log in!{% endblock %}
 
+
 {% block body %}
     <div class="container w-50">
 
@@ -26,12 +27,12 @@
                    value="{{ csrf_token('authenticate') }}"
             >
 
-            <div class="checkbox mb-3">
+            <div class="checkbox mb-3 options">
                 <label>
                     <input type="checkbox" name="_remember_me"> Remember me
                 </label>
                 <small class="registerOption">
-                        You do not have an account ? You can create it here > <a class="btn btn-secondary btn-sm " href="{{ path('app_register') }}">register</a>
+                        You do not have an account ?  <a class="btn btn-secondary btn-sm " href="{{ path('app_register') }}">register</a>
                 </small>
             </div>
 
@@ -41,10 +42,11 @@
         </form>
     </div>
     <style>
+        .options{
+           display: flex;
+        }
         .registerOption{
-            margin-left: 15%;
-            margin-top: 5px;
-            padding: 10px;
+            margin-left: 100px;
         }
     </style>
 {% endblock %}

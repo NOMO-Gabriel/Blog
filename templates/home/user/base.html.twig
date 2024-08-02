@@ -152,9 +152,10 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    {% block body %}
-        {% include 'spartial/flash.html.twig' %}
-    {% endblock %}
+</div>
+<div class="container my-4">
+    {% include 'partials/flash.html.twig' %}
+    {% block body %}{% endblock %}
 </div>
 
 <!-- Footer -->
