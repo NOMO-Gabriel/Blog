@@ -47,7 +47,15 @@
                                             <h5 class="card-title text-info">{{ question.title }}</h5>
                                             <p class="card-text"> <strong>{{ question.content }}</strong> </p>
                                             <p>Nombre de réponses : <strong>{{ question.responses|length }}</strong></p>
-                                            <p>created by : <strong class="text-info"> {{ question.creator.username }}<i class="fa-solid fa-user"></i></strong>  <br><br> <strong>{{ question.createdAt | date('l h:i  d/m/y ') }}</strong> </p>
+                                            <p>created by : <strong class="text-info">
+                                                    {% if question.creator %}
+                                                        {% if 'ROLE_ADMIN' in question.creator.roles %}
+                                                            Administrator : {{ question.creator.username }}
+                                                        {% else %}
+                                                            {{ question.creator.username }}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    </i></strong>  <br><br> <strong>{{ question.createdAt | date('l h:i  d/m/y ') }}</strong> </p>
                                             <a href="{{ path('blog.response.create.default',{id: question.id}) }}" class="btn btn-info">Repondre</a>
                                             <a href="{{ path('blog.response.question.index',{id: question.id, username: 'anonymous-user'}) }}" class="btn btn-info">Voir les réponses</a>
 

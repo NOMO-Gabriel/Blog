@@ -10,7 +10,15 @@
                 <h5 class="card-title text-info">Question :{{ question.title}}</h5>
                 <p class="card-text"> <strong>{{ question.content }}</strong> </p>
                 <p> Responses : <strong>{{ question.responses|length }}</strong></p>
-                <p>created by : <strong class="text-info"> {{ question.creator.username }}<i class="fa-solid fa-user"></i></strong>  <br><br> <strong>{{ question.createdAt | date('l h:i  d/m/y ') }}</strong> </p>
+                <p>created by : <strong class="text-info">
+                        {% if question.creator %}
+                            {% if 'ROLE_ADMIN' in question.creator.roles %}
+                                Administrator : {{ question.creator.username }}
+                            {% else %}
+                                {{ question.creator.username }}
+                            {% endif %}
+                        {% endif %}
+                        <i class="fa-solid fa-user"></i></strong>  <br><br> <strong>{{ question.createdAt | date('l h:i  d/m/y ') }}</strong> </p>
                 <a href="{{ path('blog.response.create.default',{id: question.id}) }}" class="btn btn-info">Repondre</a>
 {#                <a href="{{ path('blog.response.question.index',{id: question.id, username: username}) }}" class="btn btn-info" >Voir les réponses</a>#}
             </div>
@@ -21,7 +29,15 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <h5 class="card-title ">
-                        <strong class="text-info"> {{ response.creator.getUsername() }}<i class="fa-regular fa-user"></i></strong>
+                        <strong class="text-info">
+                            {% if response.creator %}
+                                {% if 'ROLE_ADMIN' in response.creator.roles %}
+                                    Administrator : {{ response.creator.username }}
+                                {% else %}
+                                    {{ response.creator.username }}
+                                {% endif %}
+                            {% endif %}
+                           <i class="fa-regular fa-user"></i></strong>
                             <small><strong class="text-info right text-sm">{{ question.createdAt | date('l h:i  d/m/y ') }}</strong></small>
                             <br>
                     </h5>

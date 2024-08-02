@@ -116,7 +116,7 @@ class ResponseController extends AbstractController
             $entityManager->persist($response);
             $entityManager->flush();
             $this->addFlash('success', 'Réponse ajoutée avec succès.');
-            return $this->redirectToRoute('blog.question.admin.index', [ 'username' => $username]);
+            return $this->redirectToRoute('blog.response.question.index', [ 'username' => $username,'id'=>$question->getId() ]);
         }
         return $this->render('response/create.html.twig', [
             'form' => $form,

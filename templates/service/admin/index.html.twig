@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container mt-5">
         <h1 class="text-center mb-4 text-primary">Nos Services</h1>
-        <a href="{{ path('blog.service.admin.create',{ username:username}) }}" class="btn btn-success left ">
+        <a href="{{ path('blog.service.admin.create',{ username:username}) }}" class="btn btn-info center ">
             nouveau service
             <br>
         </a>
@@ -117,5 +117,8 @@
             border-color: #972731;
         }
 
+        .center{
+            margin-left: 42%;
+        }
     </style>
 {% endblock %}

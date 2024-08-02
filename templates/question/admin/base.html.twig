@@ -17,6 +17,7 @@
             body {
                 display: flex;
                 flex-direction: column;
+                min-height: 100vh;
                 background-color: white;
             }
             .content {
@@ -49,6 +50,9 @@
             }
             .text-blue {
                 color: blue;
+            }
+            footer {
+                margin-top: auto;
             }
         </style>
     {% endblock %}
@@ -111,13 +115,13 @@
     </div>
 </nav>
 
-<div class="container my-4">
+<div class="container my-4 content">
     {% include 'partials/flash.html.twig' %}
     {% block body %}{% endblock %}
 </div>
 
 <!-- Footer -->
-<footer class="bg-info text-dark text-center py-3 mt-4">
+<footer class="bg-info text-dark text-center py-3">
     &copy; 2024 Blog Decathecs. All rights reserved.
     Powered by NOMO Gabriel
 </footer>
