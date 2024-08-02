@@ -10,8 +10,8 @@
                 <p class="card-text"> <strong>{{ question.content }}</strong> </p>
                 <p> Responses : <strong>{{ question.responses|length }}</strong></p>
                 <p>created by : <strong class="text-info"> {{ question.creator.username }}<i class="fa-solid fa-user"></i></strong>  <br><br> <strong>{{ question.createdAt | date('l h:i  d/m/y ') }}</strong> </p>
-                <a href="{{ path('blog.response.create.user',{id: question.id, username: username}) }}" class="btn btn-info">Repondre</a>
-                <a href="{{ path('blog.response.question.index',{id: question.id, username: username}) }}" class="btn btn-info">Voir les réponses</a>
+                <a href="{{ path('blog.response.create.default',{id: question.id}) }}" class="btn btn-info">Repondre</a>
+{#                <a href="{{ path('blog.response.question.index',{id: question.id, username: username}) }}" class="btn btn-info" >Voir les réponses</a>#}
             </div>
         </div>
     <br>

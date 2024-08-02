@@ -12,7 +12,7 @@
 
             {% if app.user %}
                 <div class="mb-3">
-                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="btn btn-info">Logout</a>
                 </div>
             {% endif %}
 
@@ -30,11 +30,21 @@
                 <label>
                     <input type="checkbox" name="_remember_me"> Remember me
                 </label>
+                <small class="registerOption">
+                        You do not have an account ? You can create it here > <a class="btn btn-secondary btn-sm " href="{{ path('app_register') }}">register</a>
+                </small>
             </div>
 
-            <button class="btn btn-lg btn-primary" type="submit">
-                Sign in
+            <button class="btn btn-lg btn-info" type="submit">
+                login
             </button>
         </form>
     </div>
+    <style>
+        .registerOption{
+            margin-left: 15%;
+            margin-top: 5px;
+            padding: 10px;
+        }
+    </style>
 {% endblock %}

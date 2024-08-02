@@ -4,11 +4,12 @@
 
 {% block body %}
     <div class="container p-5">
-        <div class="title-section mb-4">Welcome administrator <strong>{{ username }}</strong>. view and edit rules on your website</div>
+        <div class="title-section  text-center mb-4">Welcome administrator <strong class="text-info">{{ username | upper}}</strong>.</div>
         <table class="table table-striped">
-            <thead>
+            <thead class="text-center">
             <tr>
                 <th>Name</th>
+                <th>Email</th>
                 <th>Role</th>
                 <th>Actions</th>
             </tr>
@@ -17,6 +18,7 @@
             {% for user in users %}
                 <tr>
                     <td>{{ user.getUsername() }}</td>
+                    <td>{{ user.getEmail() }}</td>
                     <td class="role-{{ user.getRoles()[0]|lower }}">
                         {% if user.getRoles()[0] == 'ROLE_USER' %}
                             User
@@ -48,9 +50,9 @@
         </table>
     </div>
     <style>
-        /* Ajoutez ces styles à votre fichier CSS */
+
         .role-role_user {
-            background-color: #d4edda; /* Vert clair */
+            background-color: #d4edda;
         }
 
         .role-role_admin {
@@ -65,9 +67,21 @@
             vertical-align: middle;
         }
         .title-section {
-            background-color:#d4edda;
+            color:black;
+            font-size: 35px;
         }
-
+        .form-group{
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            margin-left: 10px;
+            margin-right: -80px;
+        }
+        .form-group select{
+            width: 150px;
+        }
+        .form-group .btn{
+            margin-left: 30px;
         }
 
     </style>

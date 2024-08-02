@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('blog/questions', name: 'blog.question.')]
 class QuestionController extends AbstractController
@@ -38,7 +39,7 @@ class QuestionController extends AbstractController
             'serviceName' =>  $serviceName,
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/user/{username}/{filter}', name: 'user.index', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'filter' => 'all|service_[0-9]+'])]
     public function userIndex(EntityManagerInterface $entityManager, string $username, $filter = 'all'): Response
     {
@@ -62,7 +63,7 @@ class QuestionController extends AbstractController
         ]);
     }
 
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/{username}/{filter}', name: 'admin.index', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'filter' => 'all|service_[0-9]+'])]
     public function adminIndex(EntityManagerInterface $entityManager, string $username, $filter = 'all'): Response
     {
@@ -103,7 +104,7 @@ class QuestionController extends AbstractController
             'question' => $question,
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/show/user/{username}', name: 'user.show', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'id' => Requirement::DIGITS])]
     public function userShow(EntityManagerInterface $entityManager, $id, $username): Response
     {
@@ -121,7 +122,7 @@ class QuestionController extends AbstractController
             'username' => $username,
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/show/admin/{username}', name: 'admin.show', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'id' => Requirement::DIGITS])]
     public function adminShow(EntityManagerInterface $entityManager, $id, $username): Response
     {
@@ -146,7 +147,7 @@ class QuestionController extends AbstractController
         $this->addFlash("alert", "Connectez vous ou inscrivez vous pour creer une question");
         return $this->redirectToRoute('app_login');
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/ask/user/{username}', name: 'user.create', requirements: ['username' => '^[a-z0-9_-]{4,15}$'])]
     public function userCreate(Request $request, EntityManagerInterface $entityManager, $username): Response
     {
@@ -181,7 +182,7 @@ class QuestionController extends AbstractController
             ]);
     }
 
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/ask/admin/{username}', name: 'admin.create', requirements: ['username' => '^[a-z0-9_-]{4,15}$'])]
     public function adminCreate(Request $request, EntityManagerInterface $entityManager, string $username): Response
     {
@@ -235,7 +236,7 @@ class QuestionController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edit/user/{username}', name: 'user.edit', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'id' => Requirement::DIGITS])]
     public function userEdit(Request $request, EntityManagerInterface $entityManager, $id, $username): Response
     {
@@ -262,7 +263,7 @@ class QuestionController extends AbstractController
             'username' => $username,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit/admin/{username}', name: 'admin.edit', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'id' => Requirement::DIGITS])]
     public function adminEdit(Request $request, EntityManagerInterface $entityManager, $id, $username): Response
     {
@@ -308,7 +309,7 @@ class QuestionController extends AbstractController
 
         return $this->redirectToRoute('blog.question.default.index');
     }
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/delete/user/{username}', name: 'user.delete', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'id' => Requirement::DIGITS])]
     public function userDelete(EntityManagerInterface $entityManager, $id, $username): Response
     {
@@ -326,7 +327,7 @@ class QuestionController extends AbstractController
 
         return $this->redirectToRoute('blog.question.user.index', ['username' => $username]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/delete/admin/{username}', name: 'admin.delete', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'id' => Requirement::DIGITS])]
     public function adminDelete(EntityManagerInterface $entityManager, $id, $username): Response
     {

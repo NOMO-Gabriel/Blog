@@ -8,18 +8,15 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h2 class="text-blue">{{ service.name }}</h2>
+                <h2 class="text-info">{{ service.name }}</h2>
             </div>
             <div class="card-body">
-                <h5><strong class="text-blue">Description courte:</strong> {{ service.miniDescription }}</h5>
-                <h5><strong class="text-blue">Description:</strong> {{ service.description }}</h5>
-
-                <p class="text-green"><strong class="text-blue">Nombre de visites:</strong> {{ service.numberOfRequests }}</p>
-                {#                <p><strong>Créé le:</strong> {{ service.createdAt|date('d/m/Y H:i') }}</p>#}
-                {#                <p><strong>Mis à jour le:</strong> {{ service.updatedAt|date('d/m/Y H:i') }}</p>#}
+                <h5><strong class="text-info">Libelle:</strong> {{ service.miniDescription }}</h5>
+                <h5><strong class="text-info">Description:</strong> {{ service.description }}</h5>
+                <p><strong class="text-info">Nombre de visites:</strong> {{ service.numberOfRequests }}</p>
             </div>
             <div class="card-footer text-end">
-                <a href="{{ path('blog.service.user.index',{username: username}) }}" class="btn btn-primary">Retour à la liste</a>
+                <a href="{{ path('blog.service.default.index',{username: username}) }}" class="btn btn-info">Retour à la liste</a>
             </div>
         </div>
     </div>

@@ -125,17 +125,17 @@
             <div class="carousel-item text-center p-5">
                 <h1>Des Questions ?</h1>
                 <h3>Posez vos questions et obtenez des réponses de notre communauté.</h3>
-                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.question.default.index') }}"><i class="fa fa-question"></i> Commencer</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.question.admin.index',{username : username}) }}"><i class="fa fa-question"></i> Commencer</a>
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>Nos Services</h1>
                 <h3>Découvrez les différents services que nous offrons.</h3>
-                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.service.default.index') }}"><i class="fa fa-cogs"></i> Voir les services</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.service.admin.index',{username : username}) }}"><i class="fa fa-cogs"></i> Voir les services</a>
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>À propos de nous</h1>
                 <h3>Cliquez sur le bouton pour en savoir plus sur nous et notre mission.</h3>
-                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.util.about') }}"><i class="fa fa-info-circle"></i> About us</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.util.about.admin',{username:username}) }}"><i class="fa fa-info-circle"></i> About us</a>
             </div>
 
         </div>

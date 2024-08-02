@@ -34,7 +34,7 @@
                             <h3 class="card-title text-blue">Question</h3>
                             <div class="container sm"><small><strong>{{ question.title }}</strong></small></div>
                             <br>
-                            <a href="{{ path('blog.response.question.index',{id: question.id}) }}" class="btn btn-info mt-2"><i class="fa fa-eye"></i> Voir les réponses</a>
+                            <a href="{{ path('blog.response.question.index',{id: question.id,username: username}) }}" class="btn btn-info mt-2"><i class="fa fa-eye"></i> Voir les réponses</a>
                         </div>
                     </div>
                 </div>

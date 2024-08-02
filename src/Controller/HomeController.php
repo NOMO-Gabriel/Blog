@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/', name: 'blog.home.')]
 
@@ -35,6 +36,7 @@ class HomeController extends AbstractController
             'questions' => $questions,
         ]);
     }
+    #[IsGranted('ROLE_USER')]
     #[Route('/blog/home/user/{username}', name: 'user.index',requirements: ['username' => '^[a-z0-9_-]{4,15}$' ])]
     public function UerIndex(string $username, ServiceRepository $serviceRepository, QuestionRepository $questionRepository): Response
     {
@@ -50,7 +52,7 @@ class HomeController extends AbstractController
 
     }
 
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/blog/home/admin/{username}', name: 'admin.index',requirements: ['username' => '^[a-z0-9_-]{4,15}$' ])]
     public function AdminIndex(string $username, ServiceRepository $serviceRepository, QuestionRepository $questionRepository): Response
     {
