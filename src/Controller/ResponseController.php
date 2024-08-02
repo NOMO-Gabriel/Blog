@@ -83,7 +83,7 @@ class ResponseController extends AbstractController
             $entityManager->persist($response);
             $entityManager->flush();
             $this->addFlash('success', 'Réponse ajoutée avec succès.');
-            return $this->redirectToRoute('blog.question.user.index', [ 'username' => $username]);
+            return $this->redirectToRoute('blog.response.question.index', [ 'username' => $username,'id'=>$question->getId() ]);
         }
         return $this->render('response/create.html.twig', [
             'form' => $form,
@@ -104,14 +104,14 @@ class ResponseController extends AbstractController
         $response->setQuestion($question);
         $form = $this->createForm(ResponseType::class, $response);
         $form->handleRequest($request);
-
-        $creator = $entityManager->getRepository(User::class)->findBy(['username' => $username]);
-        if(!$creator){
-            $this->addFlash("error","Vous n'avez pas le droit de repondre sans vous connecter");
-            return  $this->redirectToRoute('app_login');
+        $creator = $entityManager->getRepository(User::class)->findOneBy(['username'=> $username]);
+        if (!$creator) {
+            $this->addFlash("error", "Utilisateur non trouvé");
+            return $this->redirectToRoute('app_login');
         }
+        $response->setCreator($creator);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $response->setCreator($creator[0]);
             $response->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($response);
             $entityManager->flush();

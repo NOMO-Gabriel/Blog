@@ -26,7 +26,6 @@ class Response
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'responses')]
-    #[NotBlank]
     private ?User $creator = null;
 
     public function getId(): ?int

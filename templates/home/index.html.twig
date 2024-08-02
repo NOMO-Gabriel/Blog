@@ -20,7 +20,7 @@
                         <div class="card-body">
                             <h3 class="card-title text-blue">Service</h3>
                             <div class="container sm "><small><strong>{{ service.name }}</strong></small></div>
-                            <a href="{{ path('blog.service.default.index') }}" class="btn btn-info mt-2"><i class="fa fa-eye"></i> voir plus</a>
+                            <a href="{{ path('blog.service.default.show',{id: service.id}) }}" class="btn btn-info mt-2"><i class="fa fa-eye"></i> voir plus</a>
                         </div>
                     </div>
                 </div>
