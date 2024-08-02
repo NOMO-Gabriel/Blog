@@ -17,9 +17,7 @@ class ContactController extends AbstractController
     public function index(Request $request): Response
     {
         $form = $this->createForm(ContactType::class);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // Traitement des données du formulaire
             // Exemple: envoyer un e-mail ou sauvegarder les données
@@ -35,6 +33,11 @@ class ContactController extends AbstractController
     #[Route('/user/{username}',name:'user',requirements: ['username'=> Requirement::ASCII_SLUG])]
     public function contactUser(Request $request,String $username)
         {
+            if($this->getUser()){
+                $roles = $this->getUser()->getRoles();
+                if(in_array('ROLE_ADMIN',$roles)) {
+                    return $this->redirectToRoute('blog.contact.admin',['username' => $this->getUser()->getUserIdentifier()]);
+                }}
             $form = $this->createForm(ContactType::class);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {

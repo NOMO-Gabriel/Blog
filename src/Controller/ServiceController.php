@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Constraints\Date;
-
 #[Route('blog/services', name: 'blog.service.')]
 class ServiceController extends AbstractController
 {
@@ -20,8 +19,17 @@ class ServiceController extends AbstractController
     #[Route('/all', name: 'default.index')]
     public function index(EntityManagerInterface $entityManager): Response
     {
+        if($this->getUser()){
+            $roles = $this->getUser()->getRoles();
+            if(in_array('ROLE_USER',$roles))
+            {
+                if(in_array('ROLE_ADMIN',$roles)) {
+                    return $this->redirectToRoute('blog.service.admin.index',['username' => $this->getUser()->getUserIdentifier()]);
+                }
+                return $this->redirectToRoute('blog.service.user.index',['username' => $this->getUser()->getUserIdentifier()]);
+            }
+        }
         $services = $entityManager->getRepository(Service::class)->findAll();
-
         return $this->render('service/index.html.twig', [
                      'services' => $services,
         ]);
@@ -30,6 +38,16 @@ class ServiceController extends AbstractController
     #[Route('/user/{username}/all', name: 'user.index',requirements: ['username' => '^[a-z0-9_-]{4,15}$' ])]
     public function userIndex(EntityManagerInterface $entityManager,$username): Response
     {
+        if($this->getUser()){
+            $roles = $this->getUser()->getRoles();
+            if(in_array('ROLE_USER',$roles))
+            {
+                if(in_array('ROLE_ADMIN',$roles)) {
+                    return $this->redirectToRoute('blog.service.admin.index',['username' => $this->getUser()->getUserIdentifier()]);
+                }
+              //  return $this->redirectToRoute('blog.service.user.index',['username' => $this->getUser()->getUserIdentifier()]);
+            }
+        }
         $services = $entityManager->getRepository(Service::class)->findAll();
         return $this->render('service/user/index.html.twig', [
                        'services' => $services,
@@ -54,6 +72,16 @@ class ServiceController extends AbstractController
     #[Route('/{id}/show', name: 'default.show',requirements: ['id' => Requirement::DIGITS ])]
     public function show(EntityManagerInterface $entityManager, $id): Response
     {
+        if($this->getUser()){
+            $roles = $this->getUser()->getRoles();
+            if(in_array('ROLE_USER',$roles))
+            {
+                if(in_array('ROLE_ADMIN',$roles)) {
+                    return $this->redirectToRoute('blog.service.admin.show',['username' => $this->getUser()->getUserIdentifier()]);
+                }
+                return $this->redirectToRoute('blog.service.user.show',['username' => $this->getUser()->getUserIdentifier()]);
+            }
+        }
         $service = $entityManager->getRepository(Service::class)->find($id);
         if (!$service) {
             $this->addFlash('error',"Ce service n'existe pas");
@@ -71,6 +99,16 @@ class ServiceController extends AbstractController
     #[Route('/{id}/user/{username}/show', name: 'user.show', requirements: ['username' => '^[a-z0-9_-]{4,15}$', 'id' => Requirement::DIGITS])]
     public function userShow(EntityManagerInterface $entityManager, $id, $username): Response
     {
+        if($this->getUser()){
+            $roles = $this->getUser()->getRoles();
+            if(in_array('ROLE_USER',$roles))
+            {
+                if(in_array('ROLE_ADMIN',$roles)) {
+                    return $this->redirectToRoute('blog.service.admin.show',['username' => $this->getUser()->getUserIdentifier()]);
+                }
+             //   return $this->redirectToRoute('blog.service.user.show',['username' => $this->getUser()->getUserIdentifier()]);
+            }
+        }
         $service = $entityManager->getRepository(Service::class)->find($id);
 
         if (!$service) {
@@ -81,7 +119,6 @@ class ServiceController extends AbstractController
         }
         $service->setNumberOfRequests($service->getNumberOfRequests() + 1);
         $entityManager->flush();
-
         return $this->render('service/user/show.html.twig', [
             'service' => $service,
             'username' => $username ,
@@ -93,7 +130,6 @@ class ServiceController extends AbstractController
     public function adminShow(EntityManagerInterface $entityManager, $id, $username): Response
     {
         $service = $entityManager->getRepository(Service::class)->find($id);
-
         if (!$service) {
             $this->addFlash('error', "Ce service n'existe pas");
             return $this->redirectToRoute('blog.service.admin.index', [
@@ -112,7 +148,7 @@ class ServiceController extends AbstractController
 
 
     //routes pour creer un service
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/{username}/create', name: 'admin.create', requirements: ['username' => '^[a-z0-9_-]{4,15}$'])]
     public function adminCreate(Request $request, EntityManagerInterface $entityManager, $username): Response
     {
@@ -125,9 +161,7 @@ class ServiceController extends AbstractController
             $service->setNumberOfRequests(0);
             $entityManager->persist($service);
             $entityManager->flush();
-
             $this->addFlash('success', 'Service créé avec succès');
-
             return $this->redirectToRoute('blog.service.admin.index', ['username' => $username]);
         }
         return $this->render('service/admin/create.html.twig', [
@@ -150,9 +184,7 @@ class ServiceController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
             $this->addFlash('success', 'Service modifié avec succès');
-
             return $this->redirectToRoute('blog.service.admin.index', ['username' => $username]);
         }
         return $this->render('service/admin/edit.html.twig', [

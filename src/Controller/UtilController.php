@@ -22,6 +22,17 @@ class UtilController extends AbstractController
     #[Route('/about/user/{username}', name: 'about.user',requirements: ['username'=> Requirement::ASCII_SLUG])]
     public function aboutUser($username): Response
     {
+        if($this->getUser()){
+            $roles = $this->getUser()->getRoles();
+            if(in_array('ROLE_USER',$roles))
+            {
+                if(in_array('ROLE_ADMIN',$roles)) {
+                    return $this->redirectToRoute('blog.util.about.admin',['username' => $this->getUser()->getUserIdentifier()]);
+                }
+              //  return $this->redirectToRoute('blog.util.about.user',['username' => $this->getUser()->getUserIdentifier()]);
+            }
+        }
+
         return $this->render('util/aboutUser.html.twig', [
             'title' => 'about',
             'username' => $username
@@ -31,7 +42,7 @@ class UtilController extends AbstractController
     #[Route('/about/admin/{username}', name: 'about.admin',requirements: ['username'=> Requirement::ASCII_SLUG])]
     public function aboutAdmin($username): Response
     {
-        return $this->render('util/aboutUser.html.twig', [
+        return $this->render('util/aboutAdmin.html.twig', [
             'title' => 'about',
             'username' => $username
         ]);

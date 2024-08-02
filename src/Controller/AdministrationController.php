@@ -19,7 +19,6 @@ class AdministrationController extends AbstractController
     public function index(EntityManagerInterface $entityManager, String $username): Response
     {
         $users = $entityManager->getRepository(User::class)->findAll();
-
         return $this->render('administration/index.html.twig', [
                 'users' => $users,
                 'username' => $username ,
@@ -33,7 +32,6 @@ class AdministrationController extends AbstractController
         if (!$user) {
             throw $this->createNotFoundException('User not found');
         }
-
         $role = $request->request->get('role');
         switch ($role) {
             case '0':
@@ -48,10 +46,8 @@ class AdministrationController extends AbstractController
             default:
                 throw new \InvalidArgumentException('Invalid role');
         }
-
         $entityManager->persist($user);
         $entityManager->flush();
-
         return $this->redirectToRoute('blog.administration.index', ['username' => $user->getUsername()]);
     }
 }

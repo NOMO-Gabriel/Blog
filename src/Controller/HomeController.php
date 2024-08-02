@@ -31,10 +31,12 @@ class HomeController extends AbstractController
             $roles = $this->getUser()->getRoles();
             if(in_array('ROLE_USER',$roles))
             {
+                if(in_array('ROLE_ADMIN',$roles)) {
+                    return $this->redirectToRoute('blog.home.admin.index',['username' => $this->getUser()->getUserIdentifier()]);
+                }
                 return $this->redirectToRoute('blog.home.user.index',['username' => $this->getUser()->getUserIdentifier()]);
-            }else if(in_array('ROLE_ADMIN',$roles)) {
-                return $this->redirectToRoute('blog.home.admin.index',['username' => $this->getUser()->getUserIdentifier()]);
-            }}
+            }
+        }
         $services = $serviceRepository->findBy([], ['id' => 'DESC'], 8);
         $questions = $questionRepository->findBy([], ['id' => 'DESC'], 9);
         return $this->render('home/index.html.twig', [
