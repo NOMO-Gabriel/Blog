@@ -202,4 +202,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    private $isDisabled = false;
+
+    public function getIsDisabled(): ?bool
+    {
+        return $this->isDisabled;
+    }
+
+    public function setIsDisabled(bool $isDisabled): self
+    {
+        $this->isDisabled = $isDisabled;
+
+        return $this;
+    }
 }

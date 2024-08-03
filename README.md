@@ -1,6 +1,4 @@
 
----
-
 # Votre Blog 
 
 Bienvenue dans le projet **Blog** ! Ce projet implémente une application web simple et efficace en PHP avec utilisation du framework symfony.

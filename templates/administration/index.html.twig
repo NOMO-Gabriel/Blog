@@ -6,7 +6,7 @@
     <div class="container p-5">
         <div class="title-section  text-center mb-4">Welcome administrator <strong class="text-info">{{ username | upper}}</strong>.</div>
         <table class="table table-striped">
-            <thead class="text-center">
+            <thead >
             <tr>
                 <th>Name</th>
                 <th>Email</th>
@@ -21,26 +21,25 @@
                     <td>{{ user.getEmail() }}</td>
                     <td class="role-{{ user.getRoles()[0]|lower }}">
                         {% if user.getRoles()[0] == 'ROLE_USER' %}
-                            User
+                         <a class="btn btn-secondary" href="#">USER</a>
                         {% elseif user.getRoles()[0] == 'ROLE_ADMIN' %}
-                            Admin
-                        {% elseif user.getRoles()[0] == 'ROLE_SUPER_ADMIN' %}
-                            SUPERADMIN
+                            <a class="btn btn-success" href="#">ADMIN</a>
+                        {% elseif user.getRoles()[0] == 'ROLE_DESACTIVED' %}
+                            <a class="btn btn-danger" href="#">DESACTIVED</a>
                         {% else %}
-                            Unknown
+                            <a class="btn btn-light text-danger" href="#">UNKNOWN</a>
+
                         {% endif %}
                     </td>
                     <td>
                         <form action="{{ path('blog.administration.edit_role', { id: user.id }) }}" method="post" class="d-inline">
                             <div class="form-group">
                                 <select name="role" class="form-select">
-                                    <option value="0" {% if user.getRoles()[0] == 'ROLE_USER' %}selected{% endif %}>User</option>
-                                   {% if is_granted("ROLE_SUPERADMIN")%}
-                                    <option value="1" {% if user.getRoles()[0] == 'ROLE_SUPER_ADMIN' %}selected{% endif %}>SUPERADMIN</option>
-                                    {% endif%}
-                                    <option value="2" {% if user.getRoles()[0] == 'ROLE_ADMIN' %}selected{% endif %}>Admin</option>
+                                    <option value="0" {% if user.getRoles()[0] == 'ROLE_USER' %}selected{% endif %} class="text-info">User</option>
+                                    <option value="1" {% if user.getRoles()[0] == 'ROLE_DESACTIVED' %}selected{% endif %} class="text-danger">DESACTIVED</option>
+                                    <option value="2" {% if user.getRoles()[0] == 'ROLE_ADMIN' %}selected{% endif %} class="text-success">Admin</option>
                                 </select>
-                                <button type="submit" class="btn btn-info mt-2">
+                                <button type="submit" class="btn btn-info btn-sm ">
                                     <i class="fa fa-save"></i> Save
                                 </button>
                             </div>
@@ -80,7 +79,7 @@
             margin-right: -80px;
         }
         .form-group select{
-            width: 150px;
+            width: 100px;
         }
         .form-group .btn{
             margin-left: 30px;

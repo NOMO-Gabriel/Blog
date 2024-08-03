@@ -29,6 +29,7 @@ class AdministrationController extends AbstractController
     #[Route('/edit-role/{id}', name: 'edit_role', methods: ['POST'])]
     public function editRole(Request $request, EntityManagerInterface $entityManager, int $id): Response
     {
+        $adminName = $this->getUser()->getUserIdentifier();
         $user = $entityManager->getRepository(User::class)->find($id);
         if (!$user) {
             throw $this->createNotFoundException('User not found');
@@ -37,19 +38,22 @@ class AdministrationController extends AbstractController
         switch ($role) {
             case '0':
                 $user->setRoles(['ROLE_USER']);
+                $user->setIsDisabled(false);
                 break;
             case '1':
-                $user->setRoles(['ROLE_SUPERADMIN']);
+                $user->setRoles(['ROLE_DESACTIVED']) ;
+                $user->setIsDisabled(true);
                 break;
             case '2':
                 $user->setRoles(['ROLE_ADMIN']);
+                $user->setIsDisabled(false);
                 break;
             default:
                 $this->addFlash("error","invalid role");
         }
         $entityManager->persist($user);
         $entityManager->flush();
-        return $this->redirectToRoute('blog.administration.index', ['username' => $user->getUsername()]);
+        return $this->redirectToRoute('blog.administration.index', ['username' => $adminName]);
     }
 }
 
