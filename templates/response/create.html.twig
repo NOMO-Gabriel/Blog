@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+
+{% extends 'question/base.html.twig' %}
+{% block title %}Créer une Question{% endblock %}
+{% block body %}
+    {% include 'partials/flash.html.twig' %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center"><h1>Repondre a une question</h1>
+                    {{ form_start(form, {'attr': {'class': 'form-response'}}) }}
+                    {{ form_row(form.question) }}
+                    {{ form_row(form.content) }}
+                    <div class="text-center">
+                        {{ form_row(form.submit) }}
+                    </div>
+                    {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+=======
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ title}} {% endblock %}
@@ -5,4 +26,5 @@
 {% block body %}
 
     <h1>page {{ title }}</h1>
+>>>>>>> origin-old/main
 {% endblock %}

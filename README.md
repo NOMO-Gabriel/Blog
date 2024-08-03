@@ -1,10 +1,13 @@
 
+<<<<<<< HEAD
+=======
 ## projet pas encore termine, patientez quelques heures
 
 Cependant,vous pouvez commencer a lire le readme pour avoir quelques informations sur le projet :
 
 ---
 
+>>>>>>> origin-old/main
 # Votre Blog 
 
 Bienvenue dans le projet **Blog** ! Ce projet implémente une application web simple et efficace en PHP avec utilisation du framework symfony.

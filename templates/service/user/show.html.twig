@@ -1,13 +1,28 @@
 
 
+<<<<<<< HEAD
+{% extends 'question/user/base.html.twig' %}
+=======
 {% extends 'service/user/base.html.twig' %}
 
+>>>>>>> origin-old/main
 {% block title %}Détails du Service{% endblock %}
 
 {% block body %}
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
+<<<<<<< HEAD
+                <h2 class="text-info">{{ service.name }}</h2>
+            </div>
+            <div class="card-body">
+                <h5><strong class="text-info">Libelle:</strong> {{ service.miniDescription }}</h5>
+                <h5><strong class="text-info">Description:</strong> {{ service.description }}</h5>
+                <p><strong class="text-info">Nombre de visites:</strong> {{ service.numberOfRequests }}</p>
+            </div>
+            <div class="card-footer text-end">
+                <a href="{{ path('blog.service.user.index',{username: username}) }}" class="btn btn-info">Retour à la liste</a>
+=======
                 <h2 class="text-blue">{{ service.name }}</h2>
             </div>
             <div class="card-body">
@@ -20,6 +35,7 @@
             </div>
             <div class="card-footer text-end">
                 <a href="{{ path('blog.service.user.index', {username: username}) }}" class="btn btn-primary">Retour à la liste</a>
+>>>>>>> origin-old/main
             </div>
         </div>
     </div>

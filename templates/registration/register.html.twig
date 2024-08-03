@@ -1,11 +1,20 @@
+<<<<<<< HEAD
+{% extends 'question/base.html.twig' %}
+=======
 {% extends 'base.html.twig' %}
+>>>>>>> origin-old/main
 
 {% block title %}Register{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
+    <div class="container w-50">
+        <h1 class="text-info text-center p-3">Register</h1>
+=======
 
     <div class="container w-50">
         <h1 class="text-blue text-center">Register</h1>
+>>>>>>> origin-old/main
         {{ form_errors(registrationForm) }}
 
         {{ form_start(registrationForm) }}
@@ -14,9 +23,28 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+<<<<<<< HEAD
+        <div class="options">
+            {{ form_row(registrationForm.agreeTerms) }}
+            <small class="loginOption">
+                Do you  have an account ? You can login here > <a class="btn btn-secondary btn-sm " href="{{ path('app_login') }}">login</a>
+            </small></div>
+        <button type="submit" class="btn btn-info">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+    <style>
+        .options{
+            display: flex;
+           }
+        .loginOption{
+            margin-left: 10%;
+        }
+    </style>
+=======
         {{ form_row(registrationForm.agreeTerms) }}
 
         <button type="submit" class="btn btn-primary">Register</button>
         {{ form_end(registrationForm) }}
     </div>
+>>>>>>> origin-old/main
 {% endblock %}

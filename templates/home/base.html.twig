@@ -2,7 +2,11 @@
 <html>
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
+    <title>{% block title %}Blog {% endblock %}</title>
+=======
     <title>{% block title %}Blog Decathecs{% endblock %}</title>
+>>>>>>> origin-old/main
 
     {% block stylesheets %}
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
@@ -28,7 +32,11 @@
             .nav-link.active {
                 color: rgba(255, 255, 255, 0.89) !important;
             }
+<<<<<<< HEAD
+            . .carousel-item {
+=======
             .carousel-item {
+>>>>>>> origin-old/main
                 background-color: #e2f8f6;
                 color: black;
                 height: 400px;
@@ -86,11 +94,19 @@
                         <i class="fa fa-info-circle"></i> About Us
                     </a>
                 </li>
+<<<<<<< HEAD
+                <li class="nav-item">
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.index' ? 'active' : '' }}" href="{{ path('blog.contact.index') }}">
+                        <i class="fa fa-envelope"></i> Contact Us
+                    </a>
+                </li>
+=======
 {#                <li class="nav-item">#}
 {#                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.index' ? 'active' : '' }}" href="{{ path('blog.contact.index') }}">#}
 {#                        <i class="fa fa-envelope"></i> Contact Us#}
 {#                    </a>#}
 {#                </li>#}
+>>>>>>> origin-old/main
             </ul>
             <ul class="navbar-nav ms-auto">
 {#                <li class="nav-item">#}
@@ -98,11 +114,19 @@
 {#                </li>#}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+<<<<<<< HEAD
+                        <i class="fa fa-user"></i> User
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href=" {{ path('app_login') }}"><i class="fa fa-sign-in-alt"></i> Login</a></li>
+                            <li><a class="dropdown-item" href=" {{ path('app_register') }}"><i class="fa fa-user-plus"></i> Register</a></li>
+=======
                         <i class="fa fa-user"></i> Account
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href=" {{ path('app_login') }}"><i class="fa fa-sign-in-alt"></i> Login</a></li>
                         <li><a class="dropdown-item" href=" {{ path('app_register') }}"><i class="fa fa-user-plus"></i> Register</a></li>
+>>>>>>> origin-old/main
                     </ul>
                 </li>
             </ul>
@@ -118,8 +142,13 @@
                 <h1>Bienvenue sur le blog de Decathecs</h1>
                 <h3>Vous pouvez nous confier tous vos problèmes et ils seront résolus</h3>
                 <h3>Inscrivez-vous pour profiter de toutes les fonctionnalités de notre blog.</h3>
+<<<<<<< HEAD
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('app_register') }}"><i class="fa fa-user-plus"></i> S'inscrire</a>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('app_login') }}"><i class="fa fa-sign-in-alt"></i> Se connecter</a>
+=======
                 <a class="btn btn-primary p-2 mybtn" href=" {{ path('app_register') }}"><i class="fa fa-user-plus"></i> S'inscrire</a>
                 <a class="btn btn-primary p-2 mybtn" href=" {{ path('app_login') }}"><i class="fa fa-user-plus"></i> Se connecter</a>
+>>>>>>> origin-old/main
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>Des Questions ?</h1>
@@ -133,6 +162,36 @@
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>À propos de nous</h1>
+<<<<<<< HEAD
+                <h3>Cliquer sur le bouton pour en savoir plus sur nous et notre mission.</h3>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.util.about') }}"><i class="fa fa-info-circle"></i> About us</a>
+            </div>
+            <div class="carousel-item text-center p-5">
+                <h1>Contactez-nous</h1>
+                <h4>Si vous avez un problème particulier ou souhaitez prendre rendez-vous, contactez-nous.</h4>
+                <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.contact.index') }}"><i class="fa fa-envelope"></i> Contact us</a>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span >Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#blogCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span >Next</span>
+        </button>
+    </div>
+
+</div>
+
+<div class="container my-4">
+    {% include 'partials/flash.html.twig' %}
+    {% block body %}{% endblock %}
+</div>
+
+<!-- Footer -->
+<footer class="bg-info text-dark text-center py-3 mt-4">
+=======
                 <h3>Cliquez sur le bouton pour en savoir plus sur nous et notre mission.</h3>
                 <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.util.about') }}"><i class="fa fa-info-circle"></i> About us</a>
             </div>
@@ -158,6 +217,7 @@
 
 <!-- Footer -->
 <footer class="bg-info text-white text-center py-3 mt-4">
+>>>>>>> origin-old/main
     &copy; 2024 Blog Decathecs. All rights reserved.
     Powered by NOMO Gabriel
 </footer>
@@ -167,3 +227,7 @@
 <script src="../assets/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin-old/main

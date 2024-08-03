@@ -1,7 +1,15 @@
+<<<<<<< HEAD
+{% extends 'question/base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+
+=======
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
+>>>>>>> origin-old/main
 {% block body %}
     <div class="container w-50">
 
@@ -12,7 +20,11 @@
 
             {% if app.user %}
                 <div class="mb-3">
+<<<<<<< HEAD
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}" class="btn btn-info">Logout</a>
+=======
                     You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+>>>>>>> origin-old/main
                 </div>
             {% endif %}
 
@@ -26,6 +38,30 @@
                    value="{{ csrf_token('authenticate') }}"
             >
 
+<<<<<<< HEAD
+            <div class="checkbox mb-3 options">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+                <small class="registerOption">
+                        You do not have an account ?  <a class="btn btn-secondary btn-sm " href="{{ path('app_register') }}">register</a>
+                </small>
+            </div>
+
+            <button class="btn btn-lg btn-info" type="submit">
+                login
+            </button>
+        </form>
+    </div>
+    <style>
+        .options{
+           display: flex;
+        }
+        .registerOption{
+            margin-left: 100px;
+        }
+    </style>
+=======
             <div class="checkbox mb-3">
                 <label>
                     <input type="checkbox" name="_remember_me"> Remember me
@@ -37,4 +73,5 @@
             </button>
         </form>
     </div>
+>>>>>>> origin-old/main
 {% endblock %}

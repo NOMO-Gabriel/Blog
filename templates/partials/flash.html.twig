@@ -1,0 +1,15 @@
+{% for type,message in app.flashes %}
+
+    <div class="alert alert-{{ type }} text-center container w-50">
+        {{ message| join('.') }}
+    </div>
+    <style>
+
+        .alert-danger,.alert-error{
+            background-color: orangered;
+        }
+        .alert-success {
+            background-color: greenyellow;
+        }
+    </style>
+{% endfor %}

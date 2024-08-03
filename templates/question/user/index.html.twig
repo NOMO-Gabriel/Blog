@@ -1,3 +1,112 @@
+<<<<<<< HEAD
+{% extends 'question/user/base.html.twig' %}
+{% block title %} questions | blog DECA TECH{% endblock %}
+{% block body %}
+    <br><br><br>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar mb-3">
+                    <ul class="list-group">
+                        <li class="list-group-item {% if activeFilter == 'all' %}active {% endif %}">
+                            <a href="{{ path('blog.question.user.index', { 'filter': 'all',username: username }) }}" class="btn {% if activeFilter == 'all' %}btn-info text-light{% else %}btn-light{% endif %}">All</a>
+                        </li>
+                        {% for service in services %}
+                            <li class="list-group-item {% if activeFilter == 'service_' ~ service.id %}active{% endif %}">
+                                <a href="{{ path('blog.question.user.index', { 'filter': 'service_' ~ service.id ,username: username}) }}" class="btn {% if activeFilter == 'service_' ~ service.id %}btn{% else %}btn-light{% endif %}">{{ service.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <h1 >
+                    {% if activeFilter == 'all' %}
+                        Toutes les questions
+                    {% else %}
+                        Service: <strong >{{ serviceName }}</strong>
+                    {% endif %}
+                </h1>
+                <a href="{{ path('blog.question.user.create',{username: username}) }}" class="btn  btn-info mb-3 text-dark">New Question</a>
+
+                <!-- Questions Accordion -->
+                <div class="accordion" id="questionsAccordion">
+                    {% for question in questions %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading{{ question.id }}">
+                                <button class="accordion-button {% if loop.index == 1 %}bg-light{% else %}bg-white{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ question.id }}" aria-expanded="true" aria-controls="collapse{{ question.id }}">
+                                    {{ question.title }}
+                                </button>
+                            </h2>
+                            <div id="collapse{{ question.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ question.id }}" data-bs-parent="#questionsAccordion">
+                                <div class="accordion-body">
+                                    <div class="card  mb-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-info">{{ question.title }}</h5>
+                                            <p class="card-text"> <strong>{{ question.content }}</strong> </p>
+                                            <p>Nombre de réponses : <strong>{{ question.responses|length }}</strong></p>
+                                            <p>created by : <strong class="text-info">
+                                                    {% if question.creator %}
+                                                        {% if 'ROLE_ADMIN' in question.creator.roles %}
+                                                            Administrator : {{ question.creator.username }}
+                                                        {% else %}
+                                                            {{ question.creator.username }}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    <i class="fa-solid fa-user"></i></strong>  <br><br> <strong>{{ question.createdAt | date('l h:i  d/m/y ') }}</strong> </p>
+                                            <a href="{{ path('blog.response.create.user',{id: question.id,username: username}) }}" class="btn btn-info">Repondre</a>
+                                            <a href="{{ path('blog.response.question.index',{id: question.id, username: 'anonymous-user'}) }}" class="btn btn-info">Voir les réponses</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p>Aucune question disponible.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .accordion-button {
+            background-color: #fff;
+        }
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #cce5ff;
+        }
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1rem;
+        }
+        .list-group-item.active {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .list-group-item {
+
+        }
+    </style>
+=======
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ title}} {% endblock %}
@@ -5,4 +114,5 @@
 {% block body %}
 
     <h1>page {{ title }}</h1>
+>>>>>>> origin-old/main
 {% endblock %}

@@ -21,7 +21,10 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin-old/main
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -30,6 +33,12 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+<<<<<<< HEAD
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $security->login($user, UserAuthenticator::class, 'main');
+        }
+=======
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -39,6 +48,7 @@ class RegistrationController extends AbstractController
             return $security->login($user, UserAuthenticator::class, 'main');
         }
 
+>>>>>>> origin-old/main
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
         ]);

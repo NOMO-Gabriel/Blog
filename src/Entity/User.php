@@ -44,9 +44,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+<<<<<<< HEAD
+    /**
+     * @var Collection<int, Response>
+     */
+    #[ORM\OneToMany(targetEntity: Response::class, mappedBy: 'creator')]
+    private Collection $responses;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->responses = new ArrayCollection();
+=======
+    public function __construct()
+    {
+        $this->questions = new ArrayCollection();
+>>>>>>> origin-old/main
     }
 
     public function getId(): ?int
@@ -165,4 +178,50 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+<<<<<<< HEAD
+
+    /**
+     * @return Collection<int, Response>
+     */
+    public function getResponses(): Collection
+    {
+        return $this->responses;
+    }
+
+    public function addResponse(Response $response): static
+    {
+        if (!$this->responses->contains($response)) {
+            $this->responses->add($response);
+            $response->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResponse(Response $response): static
+    {
+        if ($this->responses->removeElement($response)) {
+            // set the owning side to null (unless already changed)
+            if ($response->getCreator() === $this) {
+                $response->setCreator(null);
+            }
+        }
+
+        return $this;
+    }
+    private $isDisabled = false;
+
+    public function getIsDisabled(): ?bool
+    {
+        return $this->isDisabled;
+    }
+
+    public function setIsDisabled(bool $isDisabled): self
+    {
+        $this->isDisabled = $isDisabled;
+
+        return $this;
+    }
+=======
+>>>>>>> origin-old/main
 }

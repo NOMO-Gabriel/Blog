@@ -4,6 +4,11 @@ namespace App\Entity;
 
 use App\Repository\ResponseRepository;
 use Doctrine\ORM\Mapping as ORM;
+<<<<<<< HEAD
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Valid;
+=======
+>>>>>>> origin-old/main
 
 #[ORM\Entity(repositoryClass: ResponseRepository::class)]
 class Response
@@ -20,6 +25,15 @@ class Response
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
 
+<<<<<<< HEAD
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'responses')]
+    private ?User $creator = null;
+
+=======
+>>>>>>> origin-old/main
     public function getId(): ?int
     {
         return $this->id;
@@ -48,4 +62,31 @@ class Response
 
         return $this;
     }
+<<<<<<< HEAD
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): static
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+=======
+>>>>>>> origin-old/main
 }
