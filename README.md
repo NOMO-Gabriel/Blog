@@ -1,11 +1,4 @@
 
-<<<<<<< HEAD
-=======
-## projet pas encore termine, patientez quelques heures
-
-Cependant,vous pouvez commencer a lire le readme pour avoir quelques informations sur le projet :
-
----
 
 >>>>>>> origin-old/main
 # Votre Blog 

@@ -18,12 +18,8 @@ class ServiceType extends AbstractType
             ->add('miniDescription')
             ->add('description')
             ->add('save',SubmitType::class, [
-<<<<<<< HEAD
                 'label' => 'valider',
                 'attr'=> ['class'=>'btn bg-info rounded']
-=======
-                'label' => 'valider'
->>>>>>> origin-old/main
             ])
         ;
     }
