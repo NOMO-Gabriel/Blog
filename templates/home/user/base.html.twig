@@ -28,8 +28,13 @@
             .nav-link.active {
                 color: rgba(255, 255, 255, 0.89) !important;
             }
+<<<<<<< HEAD
             . .carousel-item {
                 background-color: #e2f8f6;
+=======
+            .carousel-item {
+                background-color: aqua;
+>>>>>>> origin-old/main
                 color: black;
                 height: 400px;
             }
@@ -58,36 +63,62 @@
     {% endblock %}
 </head>
 <body>
+<<<<<<< HEAD
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container-fluid">
         <a class="navbar-brand text-dark" href="{{ path('blog.home.user.index',{username: username}) }}">Blog</a>
+=======
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-dark" href="{{ path('blog.home.default.index') }}">Blog</a>
+>>>>>>> origin-old/main
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.home.user.index' ? 'active' : '' }}" href="{{ path('blog.home.user.index',{username: username}) }}">
+=======
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.home.default.index' ? 'active' : '' }}" href="{{ path('blog.home.default.index') }}">
+>>>>>>> origin-old/main
                         <i class="fa fa-home"></i> Accueil
                     </a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.question.user.' ? 'active' : '' }}" href="{{ path('blog.question.user.index',{username: username}) }}">
+=======
+                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.question.default.' ? 'active' : '' }}" href="{{ path('blog.question.default.index') }}">
+>>>>>>> origin-old/main
                         <i class="fa fa-question"></i> Questions
                     </a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.service.user.' ? 'active' : '' }}" href="{{ path('blog.service.user.index',{username: username}) }}">
+=======
+                    <a class="nav-link {{ app.request.attributes.get('_route') starts with 'blog.service.default.' ? 'active' : '' }}" href="{{ path('blog.service.default.index') }}">
+>>>>>>> origin-old/main
                         <i class="fa fa-cogs"></i> Services
                     </a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about.' ? 'active' : '' }}" href="{{ path('blog.util.about.user',{username: username}) }}">
+=======
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.util.about' ? 'active' : '' }}" href="{{ path('blog.util.about') }}">
+>>>>>>> origin-old/main
                         <i class="fa fa-info-circle"></i> About Us
                     </a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.' ? 'active' : '' }}" href="{{ path('blog.contact.user',{username: username}) }}">
+=======
+                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.index' ? 'active' : '' }}" href="{{ path('blog.contact.index') }}">
+>>>>>>> origin-old/main
                         <i class="fa fa-envelope"></i> Contact Us
                     </a>
                 </li>
@@ -103,7 +134,11 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Preferences</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fa fa-history"></i> My Activity</a></li>
+<<<<<<< HEAD
                         <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+=======
+                        <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+>>>>>>> origin-old/main
                     </ul>
                 </li>
             </ul>
@@ -119,28 +154,49 @@
                 <h1>Bienvenue sur le blog de Decathecs</h1>
                 <h3>Vous pouvez nous confier tous vos problèmes et ils seront résolus</h3>
                 <h3>Inscrivez-vous pour profiter de toutes les fonctionnalités de notre blog.</h3>
+<<<<<<< HEAD
                 <a class="btn btn-primary p-2 mybtn" href="{{ path('app_register') }}"><i class="fa fa-user-plus"></i> S'inscrire</a>
                 <a class="btn btn-primary p-2 mybtn" href="{{ path('app_logout') }}"><i class="fa fa-sign-in-alt"></i> Se connecter</a>
+=======
+                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-user-plus"></i> S'inscrire</a>
+                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-sign-in-alt"></i> Se connecter</a>
+>>>>>>> origin-old/main
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>Des Questions ?</h1>
                 <h3>Posez vos questions et obtenez des réponses de notre communauté.</h3>
+<<<<<<< HEAD
                 <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.question.user.index',{username: username}) }}"><i class="fa fa-question"></i> Commencer</a>
+=======
+                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-question"></i> Commencer</a>
+>>>>>>> origin-old/main
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>Nos Services</h1>
                 <h3>Découvrez les différents services que nous offrons.</h3>
+<<<<<<< HEAD
                 <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.service.user.index',{username: username}) }}"><i class="fa fa-cogs"></i> Voir les services</a>
+=======
+                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-cogs"></i> Voir les services</a>
+>>>>>>> origin-old/main
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>À propos de nous</h1>
                 <h3>Cliquer sur le bouton pour en savoir plus sur nous et notre mission.</h3>
+<<<<<<< HEAD
                 <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.util.about') }}"><i class="fa fa-info-circle"></i> About us</a>
+=======
+                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-info-circle"></i> About us</a>
+>>>>>>> origin-old/main
             </div>
             <div class="carousel-item text-center p-5">
                 <h1>Contactez-nous</h1>
                 <h4>Si vous avez un problème particulier ou souhaitez prendre rendez-vous, contactez-nous.</h4>
+<<<<<<< HEAD
                 <a class="btn btn-primary p-2 mybtn" href="{{ path('blog.contact.user',{username: username}) }}"><i class="fa fa-envelope"></i> Contact us</a>
+=======
+                <a class="btn btn-primary p-2 mybtn" href="#"><i class="fa fa-envelope"></i> Contact us</a>
+>>>>>>> origin-old/main
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">
@@ -152,6 +208,7 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+<<<<<<< HEAD
 </div>
 <div class="container my-4">
     {% include 'partials/flash.html.twig' %}
@@ -160,6 +217,15 @@
 
 <!-- Footer -->
 <footer class="bg-info text-dark text-center py-3 mt-4">
+=======
+    {% block body %}
+        {% include 'partial/flash.html.twig' %}
+    {% endblock %}
+</div>
+
+<!-- Footer -->
+<footer class="bg-primary text-white text-center py-3 mt-4">
+>>>>>>> origin-old/main
     &copy; 2024 Blog Decathecs. All rights reserved.
     Powered by NOMO Gabriel
 </footer>

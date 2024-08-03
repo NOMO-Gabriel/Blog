@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+<<<<<<< HEAD
 use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,10 +11,16 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+=======
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+>>>>>>> origin-old/main
 #[Route('/blog/contact', name: 'blog.contact.')]
 class ContactController extends AbstractController
 {
     #[Route('/', name: 'index')]
+<<<<<<< HEAD
     public function index(Request $request): Response
     {
         $form = $this->createForm(ContactType::class);
@@ -68,6 +75,12 @@ class ContactController extends AbstractController
             'title' => 'Contact',
             'form' => $form,
             'username'=> $username
+=======
+    public function index(): Response
+    {
+        return $this->render('contact/index.html.twig', [
+            'title' => 'Contact',
+>>>>>>> origin-old/main
         ]);
     }
 }

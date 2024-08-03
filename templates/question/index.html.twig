@@ -1,5 +1,9 @@
 {% extends 'question/base.html.twig' %}
+<<<<<<< HEAD
 {% block title %} questions | blog DECA TECH{% endblock %}
+=======
+
+>>>>>>> origin-old/main
 {% block body %}
     <br><br><br>
     <div class="container">
@@ -26,10 +30,17 @@
                     {% if activeFilter == 'all' %}
                         Toutes les questions
                     {% else %}
+<<<<<<< HEAD
                         Service: <strong >{{ serviceName }}</strong>
                     {% endif %}
                 </h1>
                 <a href="{{ path('blog.question.default.create') }}" class="btn  btn-info mb-3 text-dark">New Question</a>
+=======
+                        Questions: {{ serviceName }} <!-- Extraction du nom du service à partir du filtre -->
+                    {% endif %}
+                </h1>
+                <a href="{{ path('blog.question.default.create') }}" class="btn  btn-info mb-3 text-light">New Question</a>
+>>>>>>> origin-old/main
 
                 <!-- Questions Accordion -->
                 <div class="accordion" id="questionsAccordion">
@@ -42,6 +53,7 @@
                             </h2>
                             <div id="collapse{{ question.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ question.id }}" data-bs-parent="#questionsAccordion">
                                 <div class="accordion-body">
+<<<<<<< HEAD
                                     <div class="card  mb-2">
                                         <div class="card-body">
                                             <h5 class="card-title text-info">{{ question.title }}</h5>
@@ -59,6 +71,14 @@
                                             <a href="{{ path('blog.response.create.default',{id: question.id}) }}" class="btn btn-info">Repondre</a>
                                             <a href="{{ path('blog.response.question.index',{id: question.id, username: 'anonymous-user'}) }}" class="btn btn-info">Voir les réponses</a>
 
+=======
+                                    <div class="card w-75 mb-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ question.title }}</h5>
+                                            <p class="card-text">{{ question.content }}</p>
+                                            <p>Nombre de réponses : <strong>{{ question.responses|length }}</strong></p>
+                                            <a href="#" class="btn btn-primary">Voir les réponses</a>
+>>>>>>> origin-old/main
                                         </div>
                                     </div>
                                 </div>
@@ -83,11 +103,19 @@
             box-shadow: none;
         }
         .accordion-button:not(.collapsed) {
+<<<<<<< HEAD
             background-color: #cce5ff;
         }
         .sidebar {
             background-color: #f8f9fa;
             padding: 1rem;
+=======
+            background-color: #cce5ff; /* Bleu ciel pour les questions ouvertes */
+        }
+        .sidebar {
+            background-color: #f8f9fa; /* Couleur de fond pour la sidebar */
+            padding: 1rem; /* Espacement intérieur de la sidebar */
+>>>>>>> origin-old/main
         }
         .list-group-item.active {
             background-color: #17a2b8;

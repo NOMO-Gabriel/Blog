@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+<<<<<<< HEAD
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -13,11 +14,19 @@ class UtilController extends AbstractController
 {
     #[Route('/about', name: 'about')]
     public function about(): Response
+=======
+#[Route('/blog/about', name: 'blog.util.')]
+class UtilController extends AbstractController
+{
+    #[Route('/', name: 'about')]
+    public function index(): Response
+>>>>>>> origin-old/main
     {
         return $this->render('util/about.html.twig', [
             'title' => 'about',
         ]);
     }
+<<<<<<< HEAD
     #[IsGranted('ROLE_USER')]
     #[Route('/about/user/{username}', name: 'about.user',requirements: ['username'=> Requirement::ASCII_SLUG])]
     public function aboutUser($username): Response
@@ -64,4 +73,6 @@ class UtilController extends AbstractController
         ]);
     }
 
+=======
+>>>>>>> origin-old/main
 }

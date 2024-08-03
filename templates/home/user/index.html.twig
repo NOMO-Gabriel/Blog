@@ -1,15 +1,28 @@
+<<<<<<< HEAD
 {% extends '/home/user/base.html.twig' %}
+=======
+{% extends 'service/user/base.html.twig' %}
+>>>>>>> origin-old/main
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
     <div class="container pub-container">
         <br><br>
         <h1>Bienvenue sur votre page personnalisée, {{ username }}</h1>
+=======
+    {% include 'partial/flash.html.twig' %}
+
+    <div class="container pub-container">
+        <br><br>
+        <h1>Bienvenue sur votre page personnalisée, {{ username }}!</h1>
+>>>>>>> origin-old/main
         <br><br>
         <!-- Services Section -->
         <h2>Nos services les plus sollicités :</h2>
         <div class="row">
+<<<<<<< HEAD
             {% for service in services %}
                 <div class="col-sm-3">
                     <div class="card mb-4">
@@ -17,11 +30,21 @@
                             <h3 class="card-title text-blue">Service</h3>
                             <div class="container sm "><small><strong>{{ service.name }}</strong></small></div>
                             <a href="{{ path('blog.service.user.show',{username:username , id: service.id})  }}" class="btn btn-info mt-2"><i class="fa fa-eye"></i> voir plus</a>
+=======
+            {% for i in 1..8 %}
+                <div class="col-sm-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title text-blue">Service {{ i }}</h3>
+                            <small>Contenu du service {{ i }}.</small>
+                            <a href="#" class="btn btn-info mt-2"><i class="fa fa-link"></i> Go somewhere</a>
+>>>>>>> origin-old/main
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
+<<<<<<< HEAD
         <a href="{{ path('blog.service.user.index',{username:username}) }}" class="btn btn-info  btn-lg"><i class="fa fa-th-list"></i> Voir tous les services</a>
         <br><br><br>
         <!-- Questions Section -->
@@ -35,11 +58,30 @@
                             <div class="container sm"><small><strong>{{ question.title }}</strong></small></div>
                             <br>
                             <a href="{{ path('blog.response.question.index',{username:username , id:question.id}) }}" class="btn btn-info mt-2"><i class="fa fa-eye"></i> Voir les réponses</a>
+=======
+        <a href="#" class="btn btn-primary text-light btn-lg"><i class="fa fa-th-list"></i> Voir tous les services</a>
+
+        <!-- Questions Section -->
+        <h2>Les questions les plus posées :</h2>
+        <div class="row">
+            {% for j in 1..9 %}
+                <div class="col-sm-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title text-blue">Question {{ j }}</h3>
+                            <small>Contenu de la question {{ j }}.</small>
+                            <br>
+                            <a href="#" class="btn btn-info mt-2"><i class="fa fa-eye"></i> Voir les réponses</a>
+>>>>>>> origin-old/main
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
+<<<<<<< HEAD
         <a href="{{ path('blog.question.user.index',{username:username, filter : 'all' }) }}" class="btn btn-info  btn-lg"><i class="fa fa-list"></i> Voir toutes les questions</a>
+=======
+        <a href="#" class="btn btn-primary text-light btn-lg"><i class="fa fa-list"></i> Voir toutes les questions</a>
+>>>>>>> origin-old/main
     </div>
 {% endblock %}

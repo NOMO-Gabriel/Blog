@@ -44,6 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+<<<<<<< HEAD
     /**
      * @var Collection<int, Response>
      */
@@ -54,6 +55,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->questions = new ArrayCollection();
         $this->responses = new ArrayCollection();
+=======
+    public function __construct()
+    {
+        $this->questions = new ArrayCollection();
+>>>>>>> origin-old/main
     }
 
     public function getId(): ?int
@@ -172,6 +178,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+<<<<<<< HEAD
 
     /**
      * @return Collection<int, Response>
@@ -215,4 +222,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+=======
+>>>>>>> origin-old/main
 }

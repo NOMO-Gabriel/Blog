@@ -13,34 +13,15 @@
             html, body {
                 height: 100%;
                 margin: 0;
-<<<<<<< HEAD
             }
             body {
                 display: flex;
                 flex-direction: column;
-                min-height: 100vh;
                 background-color: white;
-=======
-                padding: 0;
-            }
-            .wrapper {
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
->>>>>>> origin-old/main
             }
             .content {
                 flex: 1;
             }
-<<<<<<< HEAD
-=======
-            footer {
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                padding: 20px;
-            }
->>>>>>> origin-old/main
             .nav-link {
                 color: #000 !important;
             }
@@ -48,11 +29,7 @@
                 color: rgba(255, 255, 255, 0.89) !important;
             }
             .carousel-item {
-<<<<<<< HEAD
                 background-color: #e2f8f6;
-=======
-                background-color: aqua;
->>>>>>> origin-old/main
                 color: black;
                 height: 400px;
             }
@@ -64,13 +41,6 @@
             .btn-service {
                 width: 200px;
             }
-<<<<<<< HEAD
-=======
-            .btn-info {
-                background-color: #17a2b8;
-                border-color: #17a2b8;
-            }
->>>>>>> origin-old/main
             .btn-question {
                 width: 200px;
             }
@@ -80,26 +50,6 @@
             .text-blue {
                 color: blue;
             }
-<<<<<<< HEAD
-=======
-            .text-green {
-                color: green;
-            }
-
-            .accordion-button {
-                background-color: #ffffff;
-            }
-
-            .accordion-button:focus {
-                box-shadow: none;
-            }
-
-            .accordion-button.bg-light {
-                background-color: #e3f2fd;
-            }
-
-
->>>>>>> origin-old/main
         </style>
     {% endblock %}
 
@@ -107,11 +57,7 @@
         {% block importmap %}{{ importmap('app') }}{% endblock %}
     {% endblock %}
 </head>
-<<<<<<< HEAD
 <body>
-=======
-<body class="wrapper">
->>>>>>> origin-old/main
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container-fluid">
         <a class="navbar-brand text-dark" href="{{ path('blog.home.default.index') }}">Blog</a>
@@ -140,52 +86,29 @@
                         <i class="fa fa-info-circle"></i> About Us
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.index' ? 'active' : '' }}" href="{{ path('blog.contact.index') }}">
-                        <i class="fa fa-envelope"></i> Contact Us
-                    </a>
-                </li>
+                {#                <li class="nav-item">#}
+                {#                    <a class="nav-link {{ app.request.attributes.get('_route') == 'blog.contact.index' ? 'active' : '' }}" href="{{ path('blog.contact.index') }}">#}
+                {#                        <i class="fa fa-envelope"></i> Contact Us#}
+                {#                    </a>#}
+                {#                </li>#}
             </ul>
             <ul class="navbar-nav ms-auto">
-<<<<<<< HEAD
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>#}
-{#                </li>#}
-=======
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>
-                </li>
->>>>>>> origin-old/main
+                {#                <li class="nav-item">#}
+                {#                    <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>#}
+                {#                </li>#}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user"></i> User
+                        <i class="fa fa-user"></i> Account
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-<<<<<<< HEAD
                         <li><a class="dropdown-item" href=" {{ path('app_login') }}"><i class="fa fa-sign-in-alt"></i> Login</a></li>
                         <li><a class="dropdown-item" href=" {{ path('app_register') }}"><i class="fa fa-user-plus"></i> Register</a></li>
-=======
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-sign-in-alt"></i> Login</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-user-plus"></i> Register</a></li>
->>>>>>> origin-old/main
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-
-<div class="content">
-<<<<<<< HEAD
-    <div class="container my-4">
-        {% include 'partials/flash.html.twig' %}
-        {% block body %}{% endblock %}
-    </div>
-</div>
-
-<!-- Footer -->
-<footer class="bg-info text-dark text-center py-3">
-=======
     {% block body %}
         {% include 'partial/flash.html.twig' %}
     {% endblock %}
@@ -193,7 +116,6 @@
 
 <!-- Footer -->
 <footer class="bg-info text-white text-center py-3 mt-4">
->>>>>>> origin-old/main
     &copy; 2024 Blog Decathecs. All rights reserved.
     Powered by NOMO Gabriel
 </footer>

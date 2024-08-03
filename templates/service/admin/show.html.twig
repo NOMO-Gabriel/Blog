@@ -1,6 +1,10 @@
 
 
+<<<<<<< HEAD
 {% extends 'question/admin/base.html.twig' %}
+=======
+{% extends 'service/admin/base.html.twig' %}
+>>>>>>> origin-old/main
 
 {% block title %}Détails du Service{% endblock %}
 
@@ -8,6 +12,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
+<<<<<<< HEAD
                 <h2 class="text-info">{{ service.name }}</h2>
             </div>
             <div class="card-body">
@@ -15,6 +20,15 @@
                 <h5><strong class="text-info">Description:</strong> {{ service.description }}</h5>
 
                 <p class="text-green"><strong class="text-info">Nombre de visites:</strong> {{ service.numberOfRequests }}</p>
+=======
+                <h2 class="text-blue">{{ service.name }}</h2>
+            </div>
+            <div class="card-body">
+                <h5><strong class="text-blue">Description courte:</strong> {{ service.miniDescription }}</h5>
+                <h5><strong class="text-blue">Description:</strong> {{ service.description }}</h5>
+
+                <p class="text-green"><strong class="text-blue">Nombre de visites:</strong> {{ service.numberOfRequests }}</p>
+>>>>>>> origin-old/main
                 {#                <p><strong>Créé le:</strong> {{ service.createdAt|date('d/m/Y H:i') }}</p>#}
                 {#                <p><strong>Mis à jour le:</strong> {{ service.updatedAt|date('d/m/Y H:i') }}</p>#}
             </div>
@@ -26,8 +40,13 @@
                     <a href="#" class="btn btn-danger">
                         <i class="fa fa-trash"></i>
                     </a>
+<<<<<<< HEAD
                     <a href="{{ path('blog.service.admin.index', {username: username}) }}" class="btn btn-info">Retour à la liste</a>
                     <a href="#" class="btn btn-info">Voir les questions de ce service</a>
+=======
+                    <a href="{{ path('blog.service.admin.index', {username: username}) }}" class="btn btn-primary">Retour à la liste</a>
+                    <a href="#" class="btn btn-primary">Voir les questions de ce service</a>
+>>>>>>> origin-old/main
                 </div>
 
             </div>

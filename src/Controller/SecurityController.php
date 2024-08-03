@@ -12,6 +12,7 @@ class SecurityController extends AbstractController
     #[Route(path: '/blog/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+<<<<<<< HEAD
         if($this->getUser()){
             $roles = $this->getUser()->getRoles();
             if(in_array('ROLE_USER',$roles))
@@ -22,11 +23,20 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('blog.home.user.index',['username' => $this->getUser()->getUserIdentifier()]);
             }
         }
+=======
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
+>>>>>>> origin-old/main
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin-old/main
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 

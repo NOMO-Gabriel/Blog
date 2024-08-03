@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 {% extends 'question/base.html.twig' %}
 {% block title %}Créer une Question{% endblock %}
@@ -17,4 +18,23 @@
             </div>
         </div>
     </div>
+=======
+{# templates/question/create.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une Question{% endblock %}
+
+{% block body %}
+   <div class="container md-5 text-center">
+       <h1>Créer une Question</h1>
+
+       {{ form_start(form) }}
+       {{ form_widget(form) }}
+       <button class="btn btn-primary">Créer</button>
+       {{ form_end(form) }}
+
+       <a href="{{ path('blog.question.default.index') }}">Retour à la liste des questions</a>
+   </div>
+>>>>>>> origin-old/main
 {% endblock %}
